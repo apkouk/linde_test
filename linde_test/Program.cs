@@ -10,6 +10,13 @@ namespace linde_test
     {
         static void Main(string[] args)
         {
+           string[] argus = Environment.GetCommandLineArgs();
+           
+
+
+            Console.WriteLine(argus[1].ToString());
+            Console.WriteLine(argus[2].ToString());
+            Console.ReadLine();
         }
     }
 }
