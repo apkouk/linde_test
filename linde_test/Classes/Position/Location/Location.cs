@@ -1,4 +1,4 @@
-﻿namespace linde_test
+﻿namespace linde_test.Classes.Position.Location
 {
     public class Location
     {

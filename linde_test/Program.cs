@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using linde_test.Classes.Escenario;
 
 namespace linde_test
 {
@@ -10,12 +11,11 @@ namespace linde_test
     {
         static void Main(string[] args)
         {
-           string[] argus = Environment.GetCommandLineArgs();
-           
+            InitEscenario escenario = new InitEscenario(Environment.GetCommandLineArgs()[1]);
 
 
-            Console.WriteLine(argus[1].ToString());
-            Console.WriteLine(argus[2].ToString());
+
+        
             Console.ReadLine();
         }
     }
