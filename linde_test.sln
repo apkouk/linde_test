@@ -5,6 +5,15 @@ VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "linde_test", "linde_test\linde_test.csproj", "{A7D2F33C-5EC5-47FC-B957-4D9509B24005}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Files", "Files", "{B5FA5AFF-B066-4E9B-B143-A74D1EBB6BDE}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Desktop\Linde NET Test\Instructions.pdf = ..\..\..\Desktop\Linde NET Test\Instructions.pdf
+		..\..\..\Desktop\Linde NET Test\test_run_1.json = ..\..\..\Desktop\Linde NET Test\test_run_1.json
+		..\..\..\Desktop\Linde NET Test\test_run_2.json = ..\..\..\Desktop\Linde NET Test\test_run_2.json
+		..\..\..\Desktop\Linde NET Test\test_sol_1.json = ..\..\..\Desktop\Linde NET Test\test_sol_1.json
+		..\..\..\Desktop\Linde NET Test\test_sol_2.json = ..\..\..\Desktop\Linde NET Test\test_sol_2.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

@@ -5,7 +5,7 @@
         public enum Facing
         {
             North,
-            Weast,
+            West,
             South,
             East
         }

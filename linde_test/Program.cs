@@ -9,9 +9,23 @@ namespace linde_test
 {
     class Program
     {
+     
+
         static void Main(string[] args)
         {
-            InitEscenario escenario = new InitEscenario(Environment.GetCommandLineArgs()[1]);
+            bool testing = true;
+
+            if (!testing)
+            {
+                 InitEscenario escenario = new InitEscenario(Environment.GetCommandLineArgs()[1]);
+            }
+            else
+            {
+                string inputPath = @"C:\\Users\\cesco\\Desktop\\Linde NET Test\\test_run_1.json";
+                string outputPath = @"C:\\Users\\cesco\\Desktop\\Linde NET Test\\test_sol_1_paco.json";
+                InitEscenario escenario = new InitEscenario(inputPath);
+            }
+           
 
 
 
