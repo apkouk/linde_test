@@ -45,9 +45,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Escenario\Map.cs" />
+    <Compile Include="Classes\Escenario\Robot.cs" />
     <Compile Include="Classes\Position\Position.cs" />
-    <Compile Include="Classes\Escenario\OutputFile.cs" />
-    <Compile Include="Classes\Escenario\InitEscenario.cs" />
+    <Compile Include="Classes\Escenario\Escenario.cs" />
     <Compile Include="Classes\Position\Location\Location.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

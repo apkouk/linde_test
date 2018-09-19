@@ -9,7 +9,7 @@ namespace linde_test
 {
     class Program
     {
-     
+
 
         static void Main(string[] args)
         {
@@ -17,19 +17,30 @@ namespace linde_test
 
             if (!testing)
             {
-                 InitEscenario escenario = new InitEscenario(Environment.GetCommandLineArgs()[1]);
+                Escenario escenario = new Escenario(Environment.GetCommandLineArgs()[1]);
+                Console.WriteLine(escenario.Properties.Battery);
+                Console.WriteLine(escenario.Properties.Commands);
+                Console.WriteLine(escenario.Properties.InitialPosition.Location.X);
+                Console.WriteLine(escenario.Properties.Terrain);
+                Console.ReadLine();
             }
             else
             {
+                //string outputPath = @"C:\\Users\\cesco\\Desktop\\Linde NET Test\\test_sol_1_paco.json";
+
                 string inputPath = @"C:\\Users\\cesco\\Desktop\\Linde NET Test\\test_run_1.json";
-                string outputPath = @"C:\\Users\\cesco\\Desktop\\Linde NET Test\\test_sol_1_paco.json";
-                InitEscenario escenario = new InitEscenario(inputPath);
+                Escenario escenario = new Escenario(inputPath);
+
+                Robot robot = new Robot
+                {
+                    Battery = escenario.Properties.Battery,
+                    InitialPosition = escenario.Properties.InitialPosition,
+                    Commands = escenario.Properties.Commands,
+                    Map = new Map(escenario.Properties.Terrain)
+                };
+
+                robot.ExecuteCommands();
             }
-           
-
-
-
-        
             Console.ReadLine();
         }
     }
