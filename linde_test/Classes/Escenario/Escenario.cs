@@ -1,8 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
 using System.Collections;
-using System.Collections.Generic;
 using System.IO;
-using Newtonsoft.Json;
 
 namespace linde_test.Classes.Escenario
 {

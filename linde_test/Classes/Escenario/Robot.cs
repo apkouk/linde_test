@@ -23,33 +23,7 @@ namespace linde_test.Classes.Escenario
             VisitedCells.Add(Map.NewPosition(escenario.Properties.InitialPosition));
             Position = escenario.Properties.InitialPosition;
         }
-
-        public void ExecuteCommand(string command)
-        {
-            switch (command)
-            {
-                case "F":
-                    MoveForward();
-                    break;
-                case "B":
-                    MoveBackwards();
-                    break;
-                case "L":
-                    TurnLeft();
-                    break;
-                case "R":
-                    TurnRight();
-                    break;
-                case "S":
-                    TakeSample();
-                    break;
-                case "E":
-                    ExtendSolarPanels();
-                    break;
-            }
-            Map.MoveOnMap(this);
-        }
-
+        
         private void ExtendSolarPanels()
         {
             Battery = Battery + 9;
@@ -146,13 +120,45 @@ namespace linde_test.Classes.Escenario
             Battery = Battery - 3;
             LastState = RobotEnums.States.Moved;
         }
-        
+
+        public void ExecuteCommand(string command)
+        {
+            switch (command)
+            {
+                case "F":
+                    MoveForward();
+                    break;
+                case "B":
+                    MoveBackwards();
+                    break;
+                case "L":
+                    TurnLeft();
+                    break;
+                case "R":
+                    TurnRight();
+                    break;
+                case "S":
+                    TakeSample();
+                    break;
+                case "E":
+                    ExtendSolarPanels();
+                    break;
+            }
+            Map.MoveOnMap(this);
+        }
+
         public void ExecuteCommands()
         {
             foreach (char command in Commands)
             {
                 ExecuteCommand(Convert.ToString(command));
             }
+            WriteOutput();
+        }
+        
+        private void WriteOutput()
+        {
+            throw new NotImplementedException();
         }
     }
 }
