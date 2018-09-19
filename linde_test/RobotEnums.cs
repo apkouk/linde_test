@@ -5,9 +5,18 @@
         public enum Facing
         {
             North,
-            Weast,
+            West,
             South,
-            East
+            East,
+            Default
+        }
+
+        public enum States
+        {
+            Turned,
+            Moved,
+            SampleAdded,
+            PanelsExtended
         }
     }
 }
