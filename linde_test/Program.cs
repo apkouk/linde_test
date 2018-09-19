@@ -27,20 +27,11 @@ namespace linde_test
             else
             {
                 //string outputPath = @"C:\\Users\\cesco\\Desktop\\Linde NET Test\\test_sol_1_paco.json";
-
                 string inputPath = @"C:\\Users\\cesco\\Desktop\\Linde NET Test\\test_run_1.json";
                 Escenario escenario = new Escenario(inputPath);
 
-                Robot robot = new Robot(escenario.Properties.InitialPosition)
-                {
-                    Battery = escenario.Properties.Battery,
-                    Commands = escenario.Properties.Commands,
-                    Map = new Map(escenario.Properties.Terrain)
-                };
-
+                Robot robot = new Robot(escenario);
                 robot.ExecuteCommands();
-
-
                 robot.ExecuteCommand("F");
             }
             Console.ReadLine();

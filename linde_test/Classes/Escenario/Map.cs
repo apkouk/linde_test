@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using linde_test.Classes.Position;
 using linde_test.Classes.Position.Location;
 
 namespace linde_test.Classes.Escenario
@@ -44,5 +46,52 @@ namespace linde_test.Classes.Escenario
         {
             return position.Location.X <= Terrain[0].Length - 1 && position.Location.Y <= Terrain.Length - 1;
         }
+
+        public void MoveOnMap(Robot robot)
+        {
+            if (robot.LastState == RobotEnums.States.Turned)
+                return;
+
+            if (!IsLocationOnMapBoundaries(robot.Position) || IsNewLocationObs(robot.Position))
+            {
+                robot.Position = NewPosition((Position.Position)(robot.VisitedCells.Count > 0 ? robot.VisitedCells[robot.VisitedCells.Count - 1] : null));
+                robot.ExecuteCommand("R");
+                robot.ExecuteCommand("F");
+                return;
+            }
+
+            if (robot.LastState == RobotEnums.States.Moved)
+            {
+                Position.Position newPosition = NewPosition(robot.Position);
+                if (!IsPositionOnList(newPosition, robot.VisitedCells))
+                    robot.VisitedCells.Add(newPosition);
+            }
+        }
+
+        private bool IsPositionOnList(Position.Position newPosition, ArrayList visitedCells)
+        {
+            foreach (Position.Position visitedCell in visitedCells)
+            {
+                if (visitedCell.Facing.Equals(newPosition.Facing)
+                    && visitedCell.Location.X.Equals(newPosition.Location.X)
+                    && visitedCell.Location.Y.Equals(newPosition.Location.Y))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public Position.Position NewPosition(Position.Position position)
+        {
+            Location location = new Location
+            {
+                X = position.Location.X,
+                Y = position.Location.Y
+            };
+            return new Position.Position(location, position.Facing);
+        }
+
     }
 }

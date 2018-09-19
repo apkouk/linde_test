@@ -11,15 +11,7 @@ namespace linde_ut
         private Robot _robot;
 
         [TestMethod]
-        public void SholdExtendSolarPanels()
-        {
-            LoadRobot();
-            _robot.ExecuteCommand("E");
-            Assert.IsTrue(_robot.Battery == 59);
-        }
-
-        [TestMethod]
-        public void SholdBeOutOfBoundariesMap()
+        public void SholdTurnOverFacing()
         {
             LoadRobot();
             linde_test.Classes.Position.Location.Location newLocArray = new linde_test.Classes.Position.Location.Location
@@ -28,9 +20,9 @@ namespace linde_ut
                 Y = 2
             };
             Position newPos = new Position(newLocArray, linde_test.RobotEnums.Facing.South);
-            _robot.VisitedCells.Add(newLocArray);
+            _robot.VisitedCells.Add(newPos);
 
-            linde_test.Classes.Position.Location.Location newLocObj= new linde_test.Classes.Position.Location.Location
+            linde_test.Classes.Position.Location.Location newLocObj = new linde_test.Classes.Position.Location.Location
             {
                 X = 1,
                 Y = 2
@@ -39,7 +31,15 @@ namespace linde_ut
             _robot.Position = newPosObj;
 
             _robot.ExecuteCommand("F");
-            Assert.IsTrue(_robot.Position.Location.X == 1 && _robot.Position.Location.Y == 2);
+            Assert.IsTrue(_robot.Position.Facing == linde_test.RobotEnums.Facing.West);
+        }
+
+        [TestMethod]
+        public void SholdExtendSolarPanels()
+        {
+            LoadRobot();
+            _robot.ExecuteCommand("E");
+            Assert.IsTrue(_robot.Battery == 59);
         }
 
         [TestMethod]
@@ -139,15 +139,7 @@ namespace linde_ut
         {
             if (_robot == null)
             {
-                string inputPath = @"C:\\Users\\cesco\\Desktop\\Linde NET Test\\test_run_1.json";
-                Escenario escenario = new Escenario(inputPath);
-
-                _robot = new Robot(escenario.Properties.InitialPosition)
-                {
-                    Battery = escenario.Properties.Battery,
-                    Commands = escenario.Properties.Commands,
-                    Map = new Map(escenario.Properties.Terrain)
-                };
+                _robot = new Robot(new Escenario(@"C:\\Users\\cesco\\Desktop\\Linde NET Test\\test_run_1.json"));
             }
         }
     }

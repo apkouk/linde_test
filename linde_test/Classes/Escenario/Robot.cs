@@ -14,21 +14,14 @@ namespace linde_test.Classes.Escenario
 
         public ArrayList VisitedCells = new ArrayList();
         public ArrayList SamplesCollected = new ArrayList();
-
-        public Robot(Position.Position position)
+        
+        public Robot(Escenario escenario)
         {
-            VisitedCells.Add(NewPosition(position));
-            Position = position;
-        }
-
-        private Position.Position NewPosition(Position.Position position)
-        {
-            Location location = new Location
-            {
-                X = position.Location.X,
-                Y = position.Location.Y
-            };
-            return new Position.Position(location, position.Facing);
+            Map = new Map(escenario.Properties.Terrain);
+            Battery = escenario.Properties.Battery;
+            Commands = escenario.Properties.Commands;
+            VisitedCells.Add(Map.NewPosition(escenario.Properties.InitialPosition));
+            Position = escenario.Properties.InitialPosition;
         }
 
         public void ExecuteCommand(string command)
@@ -54,8 +47,7 @@ namespace linde_test.Classes.Escenario
                     ExtendSolarPanels();
                     break;
             }
-            MoveOnMap();
-
+            Map.MoveOnMap(this);
         }
 
         private void ExtendSolarPanels()
@@ -154,48 +146,7 @@ namespace linde_test.Classes.Escenario
             Battery = Battery - 3;
             LastState = RobotEnums.States.Moved;
         }
-
-        private void MoveOnMap()
-        {
-            if (!Map.IsLocationOnMapBoundaries(Position))
-            {
-                Position.Location = (Location)(VisitedCells.Count > 0 ? VisitedCells[VisitedCells.Count - 1] : null);
-                return;
-            }
-
-            if (!Map.IsNewLocationObs(Position) && LastState == RobotEnums.States.Moved)
-            {
-                Position.Position newPosition = NewPosition(Position);
-                if (!IsPositionOnList(newPosition))
-                    VisitedCells.Add(newPosition);
-            }
-            else
-            {
-                TurnOver();
-            }
-        }
-
-        private bool IsPositionOnList(Position.Position newPosition)
-        {
-            foreach (Position.Position visitedCell in VisitedCells)
-            {
-                if (visitedCell.Facing.Equals(newPosition.Facing)
-                    && visitedCell.Location.X.Equals(newPosition.Location.X)
-                    && visitedCell.Location.Y.Equals(newPosition.Location.Y))
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-
-        private void TurnOver()
-        {
-
-        }
-
+        
         public void ExecuteCommands()
         {
             foreach (char command in Commands)
