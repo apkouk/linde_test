@@ -31,10 +31,9 @@ namespace linde_test
                 string inputPath = @"C:\\Users\\cesco\\Desktop\\Linde NET Test\\test_run_1.json";
                 Escenario escenario = new Escenario(inputPath);
 
-                Robot robot = new Robot
+                Robot robot = new Robot(escenario.Properties.InitialPosition)
                 {
                     Battery = escenario.Properties.Battery,
-                    InitialPosition = escenario.Properties.InitialPosition,
                     Commands = escenario.Properties.Commands,
                     Map = new Map(escenario.Properties.Terrain)
                 };

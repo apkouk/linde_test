@@ -7,7 +7,8 @@
             North,
             West,
             South,
-            East
+            East,
+            Default
         }
     }
 }
