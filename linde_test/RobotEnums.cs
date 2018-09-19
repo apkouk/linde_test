@@ -10,5 +10,13 @@
             East,
             Default
         }
+
+        public enum States
+        {
+            Turned,
+            Moved,
+            SampleAdded,
+            PanelsExtended
+        }
     }
 }

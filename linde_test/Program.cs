@@ -39,6 +39,9 @@ namespace linde_test
                 };
 
                 robot.ExecuteCommands();
+
+
+                robot.ExecuteCommand("F");
             }
             Console.ReadLine();
         }

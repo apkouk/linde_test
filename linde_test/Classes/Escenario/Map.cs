@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using linde_test.Classes.Position.Location;
 
 namespace linde_test.Classes.Escenario
 {
@@ -26,6 +27,22 @@ namespace linde_test.Classes.Escenario
                 Terrain[count] = defArray;
                 count++;
             }
+        }
+
+        public bool IsNewLocationObs(Position.Position position)
+        {
+            return GetTerrain(position.Location).Equals("Obs");
+        }
+
+        public string GetTerrain(Location location)
+        {
+            string[] yVal = Terrain[location.Y];
+            return yVal[location.X];
+        }
+
+        public bool IsLocationOnMapBoundaries(Position.Position position)
+        {
+            return position.Location.X <= Terrain[0].Length - 1 && position.Location.Y <= Terrain.Length - 1;
         }
     }
 }

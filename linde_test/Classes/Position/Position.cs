@@ -2,8 +2,8 @@
 {
     public class Position
     {
-        public Location.Location Location;
-        public RobotEnums.Facing Facing;
+        public Location.Location Location { get; set; }
+        public RobotEnums.Facing Facing { get; set; }
 
         public Position(Location.Location location, RobotEnums.Facing facing)
         {
