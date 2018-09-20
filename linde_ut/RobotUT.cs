@@ -11,6 +11,13 @@ namespace linde_ut
         private Robot _robot;
 
         [TestMethod]
+        public void SholdWriteOutput()
+        {
+            LoadRobot();
+            _robot.ExecuteCommands();
+        }
+
+        [TestMethod]
         public void SholdTurnOverFacing()
         {
             LoadRobot();
@@ -133,14 +140,9 @@ namespace linde_ut
             Assert.IsTrue(_robot.Battery == 42);
         }
 
-
-
         private void LoadRobot()
         {
-            if (_robot == null)
-            {
-                _robot = new Robot(new Escenario(@"C:\\Users\\cesco\\Desktop\\Linde NET Test\\test_run_1.json"));
-            }
+            _robot = new Robot(new Escenario(@"C:\\Users\\cesco\\Desktop\\Linde NET Test\\test_run_1.json", @"C:\\Users\\cesco\\Desktop\\Linde NET Test\\test_sol_1_paco.json"));
         }
     }
 }

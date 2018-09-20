@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using linde_test.Classes.Position.Location;
+using Newtonsoft.Json;
 using System.Collections;
 using System.IO;
 
@@ -8,8 +10,17 @@ namespace linde_test.Classes.Escenario
     {
         public EscenarioJsonObj Properties;
 
-        public Escenario(string path)
+        private string _outputPath;
+        public string OutputPath
         {
+            get { return _outputPath; }
+            set { _outputPath = value; }
+        }
+
+
+        public Escenario(string path, string outputPath)
+        {
+            _outputPath = outputPath;
             ReadFile(path);
         }
 
@@ -31,6 +42,26 @@ namespace linde_test.Classes.Escenario
             public int Battery { get; set; }
             public char[] Commands { get; set; }
             public Position.Position InitialPosition { get; set; }
+        }
+
+        public class OutputFile
+        {
+            public string[] VisitedCells { get; set; }
+            public string[] SamplesCollected { get; set; }
+            public int Battery { get; set; }
+            public PositionObj FinalPosition;
+        }
+
+        public class PositionObj
+        {
+            public Location Location;
+            public string Facing;
+            
+            public PositionObj(Location location, RobotEnums.Facing facing)
+            {
+                Location = location;
+                Facing = Enum.GetName(typeof(RobotEnums.Facing), facing);
+            }
         }
     }
 }
