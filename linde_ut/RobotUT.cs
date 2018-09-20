@@ -1,13 +1,12 @@
-﻿using System;
-using System.IO;
-using linde_test.Classes.Escenario;
+﻿using linde_test.Classes.Escenario;
 using linde_test.Classes.Position;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.IO;
 
 namespace linde_ut
 {
     [TestClass]
-    public class RobotUT
+    public class RobotUt
     {
         private Robot _robot;
 

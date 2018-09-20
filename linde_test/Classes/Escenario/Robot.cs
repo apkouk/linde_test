@@ -26,6 +26,7 @@ namespace linde_test.Classes.Escenario
             Battery = Escenario.Properties.Battery;
             Commands = Escenario.Properties.Commands;
             Position = Escenario.Properties.InitialPosition;
+            VisitedCells.Add(Map.NewPosition(Position));
         }
 
         private void ExtendSolarPanels()
