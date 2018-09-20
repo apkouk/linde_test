@@ -45,6 +45,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Actions\ExtendSolarPanels.cs" />
+    <Compile Include="Interfaces\IAction.cs" />
+    <Compile Include="Interfaces\IMovement.cs" />
+    <Compile Include="Classes\Movements\MoveBackwards.cs" />
+    <Compile Include="Classes\Movements\MoveForward.cs" />
+    <Compile Include="Classes\Actions\TakeSample.cs" />
+    <Compile Include="Classes\Movements\TurnLeft.cs" />
+    <Compile Include="Classes\Movements\TurnRight.cs" />
     <Compile Include="Classes\JsonObjects\OutputFileJson.cs" />
     <Compile Include="Classes\JsonObjects\PositionJson.cs" />
     <Compile Include="Classes\JsonObjects\EscenarioJson.cs" />

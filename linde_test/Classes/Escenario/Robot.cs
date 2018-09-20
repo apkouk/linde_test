@@ -1,9 +1,11 @@
 ﻿using linde_test.Classes.JsonObjects;
 using Newtonsoft.Json;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using linde_test.Classes.Actions;
+using linde_test.Classes.Movements;
+using linde_test.Interfaces;
 
 namespace linde_test.Classes.Escenario
 {
@@ -11,14 +13,13 @@ namespace linde_test.Classes.Escenario
     {
         public int Battery { get; set; }
         private char[] Commands { get; set; }
-        private Map Map { get; set; }
+        public Map Map { get; set; }
         public Escenario Escenario { get; set; }
         public Position.Position Position { get; set; }
         public RobotEnums.States LastState { get; set; }
         public readonly List<Position.Position> VisitedCells = new List<Position.Position>();
-        public readonly ArrayList SamplesCollected = new ArrayList();
-
-
+        public readonly List<string> SamplesCollected = new List<string>();
+        
         public Robot(Escenario escenario)
         {
             Escenario = escenario;
@@ -28,125 +29,36 @@ namespace linde_test.Classes.Escenario
             Position = Escenario.InitialPosition;
             VisitedCells.Add(Map.NewPosition(Position));
         }
-
-        private void ExtendSolarPanels()
-        {
-            Battery = Battery + 9;
-            LastState = RobotEnums.States.PanelsExtended;
-        }
-
-        private void TakeSample()
-        {
-            Battery = Battery - 8;
-            SamplesCollected.Add(Map.GetTerrain(Position.Location));
-            LastState = RobotEnums.States.SampleAdded;
-        }
-
-        private void TurnRight()
-        {
-            switch (Position.Facing)
-            {
-                case RobotEnums.Facing.East:
-                    Position.Facing = RobotEnums.Facing.South;
-                    break;
-                case RobotEnums.Facing.South:
-                    Position.Facing = RobotEnums.Facing.West;
-                    break;
-                case RobotEnums.Facing.West:
-                    Position.Facing = RobotEnums.Facing.North;
-                    break;
-                case RobotEnums.Facing.North:
-                    Position.Facing = RobotEnums.Facing.East;
-                    break;
-            }
-            Battery = Battery - 2;
-            LastState = RobotEnums.States.Turned;
-        }
-
-        private void TurnLeft()
-        {
-            switch (Position.Facing)
-            {
-                case RobotEnums.Facing.East:
-                    Position.Facing = RobotEnums.Facing.North;
-                    break;
-                case RobotEnums.Facing.South:
-                    Position.Facing = RobotEnums.Facing.East;
-                    break;
-                case RobotEnums.Facing.West:
-                    Position.Facing = RobotEnums.Facing.South;
-                    break;
-                case RobotEnums.Facing.North:
-                    Position.Facing = RobotEnums.Facing.West;
-                    break;
-            }
-            Battery = Battery - 2;
-            LastState = RobotEnums.States.Turned;
-        }
-
-        private void MoveBackwards()
-        {
-            switch (Position.Facing)
-            {
-                case RobotEnums.Facing.East:
-                    Position.Location.X--;
-                    break;
-                case RobotEnums.Facing.South:
-                    Position.Location.Y--;
-                    break;
-                case RobotEnums.Facing.West:
-                    Position.Location.X++;
-                    break;
-                case RobotEnums.Facing.North:
-                    Position.Location.Y++;
-                    break;
-            }
-            Battery = Battery - 3;
-            LastState = RobotEnums.States.Moved;
-        }
-
-        private void MoveForward()
-        {
-            switch (Position.Facing)
-            {
-                case RobotEnums.Facing.East:
-                    Position.Location.X++;
-                    break;
-                case RobotEnums.Facing.South:
-                    Position.Location.Y++;
-                    break;
-                case RobotEnums.Facing.West:
-                    Position.Location.X--;
-                    break;
-                case RobotEnums.Facing.North:
-                    Position.Location.Y--;
-                    break;
-            }
-            Battery = Battery - 3;
-            LastState = RobotEnums.States.Moved;
-        }
-
+        
         public void ExecuteCommand(string command)
         {
+            IMovement movement;
+            IAction action;
             switch (command)
             {
                 case "F":
-                    MoveForward();
+                    movement = new MoveForward();
+                    movement.Move(this);
                     break;
                 case "B":
-                    MoveBackwards();
+                    movement = new MoveBackwards();
+                    movement.Move(this);
                     break;
                 case "L":
-                    TurnLeft();
+                    movement = new TurnLeft();
+                    movement.Move(this);
                     break;
                 case "R":
-                    TurnRight();
+                    movement = new TurnRight();
+                    movement.Move(this);
                     break;
                 case "S":
-                    TakeSample();
+                    action = new TakeSample();
+                    action.Execute(this);
                     break;
                 case "E":
-                    ExtendSolarPanels();
+                    action = new ExtendSolarPanels();
+                    action.Execute(this);
                     break;
             }
             Map.MoveOnMap(this);
@@ -165,11 +77,13 @@ namespace linde_test.Classes.Escenario
         {
             using (StreamWriter file = File.CreateText(Escenario.OutputPath))
             {
-                OutputFileJson output = new OutputFileJson();
-                output.VisitedCells = ConvertToJsonObjects(VisitedCells);
-                output.SamplesCollected = (string[])SamplesCollected.ToArray(typeof(string));
-                output.Battery = Battery;
-                output.FinalPosition = new PositionJson(Position.Location, Position.Facing);
+                OutputFileJson output = new OutputFileJson
+                {
+                    VisitedCells = ConvertToJsonObjects(VisitedCells),
+                    SamplesCollected =  SamplesCollected.ToArray(),
+                    Battery = Battery,
+                    FinalPosition = new PositionJson(Position.Location, Position.Facing)
+                };
 
                 JsonSerializer serializer = new JsonSerializer();
                 serializer.Serialize(file, output);
@@ -181,8 +95,8 @@ namespace linde_test.Classes.Escenario
             List<object> list = new List<object>();
             foreach (Position.Position visitedCell in visitedCells)
             {
-                var foo = new {visitedCell.Location.X, visitedCell.Location.Y};
-                list.Add(foo);
+                var cell = new {visitedCell.Location.X, visitedCell.Location.Y};
+                list.Add(cell);
             }
             return list;
         }

@@ -6,16 +6,16 @@ namespace linde_test.Classes.Escenario
 {
     public class Map
     {
-        public string[][] Terrain;
+        private string[][] _terrain;
 
         public Map(ArrayList terrain)
         {
             LoadTerrain(terrain);
         }
 
-        public void LoadTerrain(ArrayList propertiesTerrain)
+        private void LoadTerrain(ArrayList propertiesTerrain)
         {
-            Terrain = new string[propertiesTerrain.Count][];
+            _terrain = new string[propertiesTerrain.Count][];
 
             int count = 0;
             foreach (Newtonsoft.Json.Linq.JArray array in propertiesTerrain)
@@ -25,25 +25,25 @@ namespace linde_test.Classes.Escenario
                 {
                     defArray[i] = array.Root[i].ToString();
                 }
-                Terrain[count] = defArray;
+                _terrain[count] = defArray;
                 count++;
             }
         }
 
-        public bool IsNewLocationObs(Position.Position position)
+        private bool IsNewLocationObs(Position.Position position)
         {
             return GetTerrain(position.Location).Equals("Obs");
         }
 
         public string GetTerrain(Location location)
         {
-            string[] yVal = Terrain[location.Y];
+            string[] yVal = _terrain[location.Y];
             return yVal[location.X];
         }
 
-        public bool IsLocationOnMapBoundaries(Position.Position position)
+        private bool IsLocationOnMapBoundaries(Position.Position position)
         {
-            return position.Location.X <= Terrain[0].Length - 1 && position.Location.Y <= Terrain.Length - 1;
+            return position.Location.X <= _terrain[0].Length - 1 && position.Location.Y <= _terrain.Length - 1;
         }
 
         public void MoveOnMap(Robot robot)

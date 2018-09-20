@@ -8,7 +8,7 @@ namespace linde_test.Classes.JsonObjects
         [JsonProperty(Order = 1)]
         public List<object> VisitedCells { get; set; }
         [JsonProperty(Order = 2)]
-        public object[] SamplesCollected { get; set; }
+        public string[] SamplesCollected { get; set; }
         [JsonProperty(Order = 3)]
         public int Battery { get; set; }
         [JsonProperty(Order = 4)]

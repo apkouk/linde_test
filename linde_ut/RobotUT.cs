@@ -14,8 +14,7 @@ namespace linde_ut
         public void SholdWriteOutput()
         {
             LoadRobot();
-            _robot.ExecuteCommands();
-           Assert.IsTrue(File.Exists(_robot.Escenario.OutputPath));
+            Assert.IsTrue(File.Exists(_robot.Escenario.OutputPath));
         }
 
         [TestMethod]
