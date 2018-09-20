@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using linde_test.Classes.Escenario;
 using linde_test.Classes.Position;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -15,6 +16,7 @@ namespace linde_ut
         {
             LoadRobot();
             _robot.ExecuteCommands();
+           Assert.IsTrue(File.Exists(_robot.Escenario.OutputPath));
         }
 
         [TestMethod]

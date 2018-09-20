@@ -12,7 +12,7 @@ namespace linde_test.Classes.Escenario
         public int Battery { get; set; }
         private char[] Commands { get; set; }
         private Map Map { get; set; }
-        private Escenario Escenario { get; set; }
+        public Escenario Escenario { get; set; }
         public Position.Position Position { get; set; }
         public RobotEnums.States LastState { get; set; }
         public readonly List<Position.Position> VisitedCells = new List<Position.Position>();
