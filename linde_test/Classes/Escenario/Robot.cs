@@ -1,10 +1,9 @@
-﻿using System;
+﻿using linde_test.Classes.JsonObjects;
+using Newtonsoft.Json;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
-using linde_test.Classes.JsonObjects;
-using Newtonsoft.Json;
 
 namespace linde_test.Classes.Escenario
 {
@@ -23,10 +22,10 @@ namespace linde_test.Classes.Escenario
         public Robot(Escenario escenario)
         {
             Escenario = escenario;
-            Map = new Map(Escenario.Properties.Terrain);
-            Battery = Escenario.Properties.Battery;
-            Commands = Escenario.Properties.Commands;
-            Position = Escenario.Properties.InitialPosition;
+            Map = new Map(Escenario.Terrain);
+            Battery = Escenario.Battery;
+            Commands = Escenario.Commands;
+            Position = Escenario.InitialPosition;
             VisitedCells.Add(Map.NewPosition(Position));
         }
 
@@ -182,7 +181,7 @@ namespace linde_test.Classes.Escenario
             List<object> list = new List<object>();
             foreach (Position.Position visitedCell in visitedCells)
             {
-                var foo = new {X = visitedCell.Location.X, Y = visitedCell.Location.Y};
+                var foo = new {visitedCell.Location.X, visitedCell.Location.Y};
                 list.Add(foo);
             }
             return list;

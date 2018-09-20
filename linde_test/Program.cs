@@ -11,7 +11,14 @@ namespace linde_test
     {
         static void Main(string[] args)
         {
-            Escenario escenario = new Escenario(Environment.GetCommandLineArgs()[1], Environment.GetCommandLineArgs()[2]);
+            //Escenario escenario = new Escenario(Environment.GetCommandLineArgs()[1], Environment.GetCommandLineArgs()[2]);
+            //Robot robot = new Robot(escenario);
+            //robot.ExecuteCommands();
+
+            string outputPath = @"C:\\Users\\cesco\\Desktop\\Linde NET Test\\test_sol_2_paco.json";
+            string inputPath = @"C:\\Users\\cesco\\Desktop\\Linde NET Test\\test_run_2.json";
+
+            Escenario escenario = new Escenario(inputPath, outputPath);
             Robot robot = new Robot(escenario);
             robot.ExecuteCommands();
         }
