@@ -6,25 +6,35 @@ namespace linde_test.Classes.Movements
 {
     public class MoveForward : IMovement
     {
-        public void Move(Robot robot)
+        private Robot Robot;
+        public MoveForward(Robot robot)
         {
-            switch (robot.Position.Facing)
+            Robot = robot;
+            Move();
+        }
+
+        public void Move()
+        {
+            if (Robot != null)
             {
-                case RobotEnums.Facing.East:
-                    robot.Position.Location.X++;
-                    break;
-                case RobotEnums.Facing.South:
-                    robot.Position.Location.Y++;
-                    break;
-                case RobotEnums.Facing.West:
-                    robot.Position.Location.X--;
-                    break;
-                case RobotEnums.Facing.North:
-                    robot.Position.Location.Y--;
-                    break;
+                switch (Robot.Position.Facing)
+                {
+                    case RobotEnums.Facing.East:
+                        Robot.Position.Location.X++;
+                        break;
+                    case RobotEnums.Facing.South:
+                        Robot.Position.Location.Y++;
+                        break;
+                    case RobotEnums.Facing.West:
+                        Robot.Position.Location.X--;
+                        break;
+                    case RobotEnums.Facing.North:
+                        Robot.Position.Location.Y--;
+                        break;
+                }
+                Robot.Battery = Robot.Battery - 3;
+                Robot.LastState = RobotEnums.States.Moved;
             }
-            robot.Battery = robot.Battery - 3;
-            robot.LastState = RobotEnums.States.Moved;
         }
     }
 }

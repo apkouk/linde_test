@@ -20,7 +20,8 @@ namespace linde_test
 
             Escenario escenario = new Escenario(inputPath, outputPath);
             Robot robot = new Robot(escenario);
-         
+            robot.ExecuteCommands();
+
         }
     }
 }

@@ -1,11 +1,10 @@
-﻿using linde_test.Classes.JsonObjects;
+﻿using linde_test.Classes.Actions;
+using linde_test.Classes.JsonObjects;
+using linde_test.Classes.Movements;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using linde_test.Classes.Actions;
-using linde_test.Classes.Movements;
-using linde_test.Interfaces;
 
 namespace linde_test.Classes.Escenario
 {
@@ -19,7 +18,7 @@ namespace linde_test.Classes.Escenario
         public RobotEnums.States LastState { get; set; }
         public readonly List<Position.Position> VisitedCells = new List<Position.Position>();
         public readonly List<string> SamplesCollected = new List<string>();
-        
+
         public Robot(Escenario escenario)
         {
             Escenario = escenario;
@@ -29,36 +28,29 @@ namespace linde_test.Classes.Escenario
             Position = Escenario.InitialPosition;
             VisitedCells.Add(Map.NewPosition(Position));
         }
-        
+
         public void ExecuteCommand(string command)
         {
-            IMovement movement;
-            IAction action;
+
             switch (command)
             {
                 case "F":
-                    movement = new MoveForward();
-                    movement.Move(this);
+                    new MoveForward(this);
                     break;
                 case "B":
-                    movement = new MoveBackwards();
-                    movement.Move(this);
+                    new MoveBackwards(this);
                     break;
                 case "L":
-                    movement = new TurnLeft();
-                    movement.Move(this);
+                    new TurnLeft(this);    
                     break;
                 case "R":
-                    movement = new TurnRight();
-                    movement.Move(this);
+                    new TurnRight(this);
                     break;
                 case "S":
-                    action = new TakeSample();
-                    action.Execute(this);
+                    new TakeSample(this);
                     break;
                 case "E":
-                    action = new ExtendSolarPanels();
-                    action.Execute(this);
+                    new ExtendSolarPanels(this);
                     break;
             }
             Map.MoveOnMap(this);
@@ -80,7 +72,7 @@ namespace linde_test.Classes.Escenario
                 OutputFileJson output = new OutputFileJson
                 {
                     VisitedCells = ConvertToJsonObjects(VisitedCells),
-                    SamplesCollected =  SamplesCollected.ToArray(),
+                    SamplesCollected = SamplesCollected.ToArray(),
                     Battery = Battery,
                     FinalPosition = new PositionJson(Position.Location, Position.Facing)
                 };
@@ -95,7 +87,7 @@ namespace linde_test.Classes.Escenario
             List<object> list = new List<object>();
             foreach (Position.Position visitedCell in visitedCells)
             {
-                var cell = new {visitedCell.Location.X, visitedCell.Location.Y};
+                var cell = new { visitedCell.Location.X, visitedCell.Location.Y };
                 list.Add(cell);
             }
             return list;

@@ -2,14 +2,24 @@
 using linde_test.Classes.Escenario;
 
 namespace linde_test.Classes.Actions
-{ 
+{
     public class TakeSample : IAction
     {
-        public void Execute(Robot robot)
+        private Robot Robot;
+        public TakeSample(Robot robot)
         {
-            robot.Battery = robot.Battery - 8;
-            robot.SamplesCollected.Add(robot.Map.GetTerrain(robot.Position.Location));
-            robot.LastState = RobotEnums.States.SampleAdded;
+            Robot = robot;
+            Execute();
+        }
+
+        public void Execute()
+        {
+            if (Robot != null)
+            {
+                Robot.Battery = Robot.Battery - 8;
+                Robot.SamplesCollected.Add(Robot.Map.GetTerrain(Robot.Position.Location));
+                Robot.LastState = RobotEnums.States.SampleAdded;
+            }
         }
     }
 }

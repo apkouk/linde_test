@@ -5,26 +5,36 @@ namespace linde_test.Classes.Movements
 {
     public class TurnRight : IMovement
     {
-        public void Move(Robot robot)
+        private Robot Robot;
+        public TurnRight(Robot robot)
         {
-            switch (robot.Position.Facing)
-            {
-                case RobotEnums.Facing.East:
-                    robot.Position.Facing = RobotEnums.Facing.South;
-                    break;
-                case RobotEnums.Facing.South:
-                    robot.Position.Facing = RobotEnums.Facing.West;
-                    break;
-                case RobotEnums.Facing.West:
-                    robot.Position.Facing = RobotEnums.Facing.North;
-                    break;
-                case RobotEnums.Facing.North:
-                    robot.Position.Facing = RobotEnums.Facing.East;
-                    break;
-            }
-            robot.Battery = robot.Battery - 2;
-            robot.LastState = RobotEnums.States.Turned;
+            Robot = robot;
+            Move();
         }
 
+        public void Move()
+        {
+            if (Robot != null)
+            {
+                switch (Robot.Position.Facing)
+                {
+                    case RobotEnums.Facing.East:
+                        Robot.Position.Facing = RobotEnums.Facing.South;
+                        break;
+                    case RobotEnums.Facing.South:
+                        Robot.Position.Facing = RobotEnums.Facing.West;
+                        break;
+                    case RobotEnums.Facing.West:
+                        Robot.Position.Facing = RobotEnums.Facing.North;
+                        break;
+                    case RobotEnums.Facing.North:
+                        Robot.Position.Facing = RobotEnums.Facing.East;
+                        break;
+                }
+
+                Robot.Battery = Robot.Battery - 2;
+                Robot.LastState = RobotEnums.States.Turned;
+            }
+        }
     }
 }
