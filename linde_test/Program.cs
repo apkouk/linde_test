@@ -9,8 +9,6 @@ namespace linde_test
 {
     class Program
     {
-
-
         static void Main(string[] args)
         {
             bool testing = true;
@@ -25,13 +23,11 @@ namespace linde_test
             {
                 string outputPath = @"C:\\Users\\cesco\\Desktop\\Linde NET Test\\test_sol_1_paco.json";
                 string inputPath = @"C:\\Users\\cesco\\Desktop\\Linde NET Test\\test_run_1.json";
-                Escenario escenario = new Escenario(inputPath, outputPath);
 
+                Escenario escenario = new Escenario(inputPath, outputPath);
                 Robot robot = new Robot(escenario);
                 robot.ExecuteCommands();
-                robot.ExecuteCommand("F");
             }
-            Console.ReadLine();
         }
     }
 }

@@ -2,13 +2,14 @@
 using linde_test.Classes.Position.Location;
 using Newtonsoft.Json;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 
 namespace linde_test.Classes.Escenario
 {
     public class Escenario
     {
-        public EscenarioJsonObj Properties;
+        public EscenarioJson Properties;
 
         private string _outputPath;
         public string OutputPath
@@ -31,12 +32,12 @@ namespace linde_test.Classes.Escenario
                 using (StreamReader r = new StreamReader(path))
                 {
                     string json = r.ReadToEnd();
-                    Properties = JsonConvert.DeserializeObject<EscenarioJsonObj>(json);
+                    Properties = JsonConvert.DeserializeObject<EscenarioJson>(json);
                 }
             }
         }
 
-        public class EscenarioJsonObj
+        public class EscenarioJson
         {
             public ArrayList Terrain;
             public int Battery { get; set; }
@@ -44,20 +45,24 @@ namespace linde_test.Classes.Escenario
             public Position.Position InitialPosition { get; set; }
         }
 
-        public class OutputFile
+        public class OutputFileJson
         {
-            public string[] VisitedCells { get; set; }
-            public string[] SamplesCollected { get; set; }
+            [JsonProperty(Order = 1)]
+            public List<object> VisitedCells { get; set; }
+            [JsonProperty(Order = 2)]
+            public object[] SamplesCollected { get; set; }
+            [JsonProperty(Order = 3)]
             public int Battery { get; set; }
-            public PositionObj FinalPosition;
+            [JsonProperty(Order = 4)]
+            public PositionJson FinalPosition;
         }
 
-        public class PositionObj
+        public class PositionJson
         {
             public Location Location;
             public string Facing;
             
-            public PositionObj(Location location, RobotEnums.Facing facing)
+            public PositionJson(Location location, RobotEnums.Facing facing)
             {
                 Location = location;
                 Facing = Enum.GetName(typeof(RobotEnums.Facing), facing);

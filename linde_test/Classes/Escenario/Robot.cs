@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using Newtonsoft.Json;
 
 namespace linde_test.Classes.Escenario
@@ -13,7 +15,7 @@ namespace linde_test.Classes.Escenario
         private Escenario Escenario { get; set; }
         public Position.Position Position { get; set; }
         public RobotEnums.States LastState { get; set; }
-        public readonly ArrayList VisitedCells = new ArrayList();
+        public readonly List<Position.Position> VisitedCells = new List<Position.Position>();
         public readonly ArrayList SamplesCollected = new ArrayList();
 
 
@@ -162,23 +164,26 @@ namespace linde_test.Classes.Escenario
         {
             using (StreamWriter file = File.CreateText(Escenario.OutputPath))
             {
-                Escenario.OutputFile output = new Escenario.OutputFile();
-
-                
-
-                //output.VisitedCells = (string[]) VisitedCells.ToArray();
-
-                output.SamplesCollected = (string[]) SamplesCollected.ToArray(typeof(string));
-
+                Escenario.OutputFileJson output = new Escenario.OutputFileJson();
+                output.VisitedCells = ConvertToJsonObjects(VisitedCells);
+                output.SamplesCollected = (string[])SamplesCollected.ToArray(typeof(string));
                 output.Battery = Battery;
-
-           
-                Escenario.PositionObj positionOjb = new Escenario.PositionObj(Position.Location, Position.Facing);
-                output.FinalPosition = positionOjb;
+                output.FinalPosition = new Escenario.PositionJson(Position.Location, Position.Facing);
 
                 JsonSerializer serializer = new JsonSerializer();
                 serializer.Serialize(file, output);
             }
+        }
+
+        private List<object> ConvertToJsonObjects(List<Position.Position> visitedCells)
+        {
+            List<object> list = new List<object>();
+            foreach (Position.Position visitedCell in visitedCells)
+            {
+                var foo = new {X = visitedCell.Location.X, Y = visitedCell.Location.Y};
+                list.Add(foo);
+            }
+            return list;
         }
     }
 }

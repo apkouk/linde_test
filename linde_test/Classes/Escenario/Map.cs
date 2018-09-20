@@ -1,7 +1,6 @@
-﻿using System;
+﻿using linde_test.Classes.Position.Location;
 using System.Collections;
-using linde_test.Classes.Position;
-using linde_test.Classes.Position.Location;
+using System.Collections.Generic;
 
 namespace linde_test.Classes.Escenario
 {
@@ -54,7 +53,7 @@ namespace linde_test.Classes.Escenario
 
             if (!IsLocationOnMapBoundaries(robot.Position) || IsNewLocationObs(robot.Position))
             {
-                robot.Position = NewPosition((Position.Position)(robot.VisitedCells.Count > 0 ? robot.VisitedCells[robot.VisitedCells.Count - 1] : null));
+                robot.Position = NewPosition(robot.VisitedCells.Count > 0 ? robot.VisitedCells[robot.VisitedCells.Count - 1] : null);
                 robot.ExecuteCommand("R");
                 robot.ExecuteCommand("F");
                 return;
@@ -68,7 +67,7 @@ namespace linde_test.Classes.Escenario
             }
         }
 
-        private bool IsPositionOnList(Position.Position newPosition, ArrayList visitedCells)
+        private bool IsPositionOnList(Position.Position newPosition, List<Position.Position> visitedCells)
         {
             foreach (Position.Position visitedCell in visitedCells)
             {
