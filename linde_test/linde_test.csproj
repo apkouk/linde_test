@@ -45,6 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\JsonObjects\OutputFileJson.cs" />
+    <Compile Include="Classes\JsonObjects\PositionJson.cs" />
+    <Compile Include="Classes\JsonObjects\EscenarioJson.cs" />
     <Compile Include="Classes\Escenario\Map.cs" />
     <Compile Include="Classes\Escenario\Robot.cs" />
     <Compile Include="Classes\Position\Position.cs" />

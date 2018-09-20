@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using linde_test.Classes.JsonObjects;
 using Newtonsoft.Json;
 
 namespace linde_test.Classes.Escenario
@@ -165,11 +166,11 @@ namespace linde_test.Classes.Escenario
         {
             using (StreamWriter file = File.CreateText(Escenario.OutputPath))
             {
-                Escenario.OutputFileJson output = new Escenario.OutputFileJson();
+                OutputFileJson output = new OutputFileJson();
                 output.VisitedCells = ConvertToJsonObjects(VisitedCells);
                 output.SamplesCollected = (string[])SamplesCollected.ToArray(typeof(string));
                 output.Battery = Battery;
-                output.FinalPosition = new Escenario.PositionJson(Position.Location, Position.Facing);
+                output.FinalPosition = new PositionJson(Position.Location, Position.Facing);
 
                 JsonSerializer serializer = new JsonSerializer();
                 serializer.Serialize(file, output);
