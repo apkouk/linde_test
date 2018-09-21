@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using linde_test.Classes.Escenario;
 
 namespace linde_test
@@ -11,17 +7,21 @@ namespace linde_test
     {
         static void Main(string[] args)
         {
-            //Escenario escenario = new Escenario(Environment.GetCommandLineArgs()[1], Environment.GetCommandLineArgs()[2]);
-            //Robot robot = new Robot(escenario);
-            //robot.ExecuteCommands();
+            Escenario escenario;
+            Robot robot;
 
-            string outputPath = @"C:\\Users\\cesco\\Desktop\\Linde NET Test\\test_sol_2_paco.json";
-            string inputPath = @"C:\\Users\\cesco\\Desktop\\Linde NET Test\\test_run_2.json";
-
-            Escenario escenario = new Escenario(inputPath, outputPath);
-            Robot robot = new Robot(escenario);
-            robot.ExecuteCommands();
-
+            if (Properties.Settings.Default.Production)
+            {
+                escenario = new Escenario(Environment.GetCommandLineArgs()[1], Environment.GetCommandLineArgs()[2]);
+                robot = new Robot(escenario);
+                robot.ExecuteCommands();
+            }
+            else
+            {
+                escenario = new Escenario(Properties.Settings.Default.InputPath, Properties.Settings.Default.OutputPath);
+                robot = new Robot(escenario);
+                robot.ExecuteCommands();
+            }
         }
     }
 }
