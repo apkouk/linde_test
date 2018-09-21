@@ -11,14 +11,14 @@ namespace linde_ut
         private Robot _robot;
 
         [TestMethod]
-        public void SholdWriteOutput()
+        public void ShouldWriteOutput()
         {
             LoadRobot();
             Assert.IsTrue(File.Exists(_robot.Escenario.OutputPath));
         }
 
         [TestMethod]
-        public void SholdTurnOverFacing()
+        public void ShouldTurnOverFacing()
         {
             LoadRobot();
             linde_test.Classes.Position.Location.Location newLocArray = new linde_test.Classes.Position.Location.Location
@@ -42,7 +42,7 @@ namespace linde_ut
         }
 
         [TestMethod]
-        public void SholdExtendSolarPanels()
+        public void ShouldExtendSolarPanels()
         {
             LoadRobot();
             _robot.ExecuteCommand("E");
@@ -50,7 +50,7 @@ namespace linde_ut
         }
 
         [TestMethod]
-        public void SholdMoveOneForward()
+        public void ShouldMoveOneForward()
         {
             LoadRobot();
             _robot.ExecuteCommand("F");
@@ -70,7 +70,7 @@ namespace linde_ut
         }
 
         [TestMethod]
-        public void SholdMoveOneBackwards()
+        public void ShouldMoveOneBackwards()
         {
             LoadRobot();
             _robot.Position.Location.X = 1;
@@ -98,7 +98,7 @@ namespace linde_ut
         }
 
         [TestMethod]
-        public void SholdTurnLeft()
+        public void ShouldTurnLeft()
         {
             LoadRobot();
             _robot.Position.Location.X = 1;
@@ -114,7 +114,7 @@ namespace linde_ut
         }
 
         [TestMethod]
-        public void SholdTurnRight()
+        public void ShouldTurnRight()
         {
             LoadRobot();
             _robot.Position.Location.X = 1;
@@ -130,7 +130,7 @@ namespace linde_ut
         }
 
         [TestMethod]
-        public void SholdTakeASample()
+        public void ShouldTakeASample()
         {
             LoadRobot();
             _robot.Position.Location.X = 1;

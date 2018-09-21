@@ -7,7 +7,7 @@ namespace linde_test.Classes.Escenario
 {
     public class Escenario
     {
-        public EscenarioJson Properties;
+        private EscenarioJson _properties;
         public string OutputPath { get; }
 
         public ArrayList Terrain { get; set; }
@@ -18,23 +18,23 @@ namespace linde_test.Classes.Escenario
         public Escenario(string path, string outputPath)
         {
             OutputPath = outputPath;
-            ReadFile(path);
+            LoadEscenario(path);
         }
 
-        private void ReadFile(string path)
+        private void LoadEscenario(string path)
         {
             if (path.EndsWith(".json"))
             {
                 using (StreamReader r = new StreamReader(path))
                 {
                     string json = r.ReadToEnd();
-                    Properties = JsonConvert.DeserializeObject<EscenarioJson>(json);
+                    _properties = JsonConvert.DeserializeObject<EscenarioJson>(json);
                 }
 
-                Terrain = Properties.Terrain;
-                Battery = Properties.Battery;
-                Commands = Properties.Commands;
-                InitialPosition = Properties.InitialPosition;
+                Terrain = _properties.Terrain;
+                Battery = _properties.Battery;
+                Commands = _properties.Commands;
+                InitialPosition = _properties.InitialPosition;
             }
         }
     }
