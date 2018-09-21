@@ -7,8 +7,7 @@
             North,
             West,
             South,
-            East,
-            Default
+            East
         }
 
         public enum States

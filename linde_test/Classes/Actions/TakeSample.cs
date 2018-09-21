@@ -15,11 +15,15 @@ namespace linde_test.Classes.Actions
         public void Execute()
         {
             if (Robot != null)
-            {
-                Robot.Battery = Robot.Battery - 8;
+            {                
                 Robot.SamplesCollected.Add(Robot.Map.GetTerrain(Robot.Position.Location));
                 Robot.LastState = RobotEnums.States.SampleAdded;
             }
+        }
+
+        public void UpdateBattery()
+        {
+            Robot.Battery = Robot.Battery - 8;            
         }
     }
 }

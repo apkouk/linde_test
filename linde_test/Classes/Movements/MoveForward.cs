@@ -32,9 +32,13 @@ namespace linde_test.Classes.Movements
                         Robot.Position.Location.Y--;
                         break;
                 }
-                Robot.Battery = Robot.Battery - 3;
                 Robot.LastState = RobotEnums.States.Moved;
             }
+        }
+
+        public void UpdateBattery()
+        {                     
+            Robot.Battery = Robot.Battery - 3;
         }
     }
 }

@@ -5,5 +5,6 @@ namespace linde_test.Interfaces
     public interface IMovement
     {
         void Move();
+        void UpdateBattery();
     }
 }

@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using linde_test.Interfaces;
 
 namespace linde_test.Classes.Escenario
 {
@@ -31,26 +32,25 @@ namespace linde_test.Classes.Escenario
 
         public void ExecuteCommand(string command)
         {
-
             switch (command)
             {
                 case "F":
-                    new MoveForward(this);
+                    new MoveForward(this).UpdateBattery();
                     break;
                 case "B":
-                    new MoveBackwards(this);
+                    new MoveBackwards(this).UpdateBattery();
                     break;
                 case "L":
-                    new TurnLeft(this);    
+                    new TurnLeft(this).UpdateBattery();
                     break;
                 case "R":
-                    new TurnRight(this);
+                    new TurnRight(this).UpdateBattery();
                     break;
                 case "S":
-                    new TakeSample(this);
+                    new TakeSample(this).UpdateBattery();
                     break;
                 case "E":
-                    new ExtendSolarPanels(this);
+                    new ExtendSolarPanels(this).UpdateBattery();
                     break;
             }
             Map.MoveOnMap(this);

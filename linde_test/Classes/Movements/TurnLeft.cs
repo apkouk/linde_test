@@ -31,10 +31,13 @@ namespace linde_test.Classes.Movements
                         Robot.Position.Facing = RobotEnums.Facing.West;
                         break;
                 }
-
-                Robot.Battery = Robot.Battery - 2;
                 Robot.LastState = RobotEnums.States.Turned;
             }
+        }
+
+        public void UpdateBattery()
+        {
+            Robot.Battery = Robot.Battery - 2;           
         }
     }
 }

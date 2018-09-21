@@ -13,11 +13,12 @@ namespace linde_test.Classes.Actions
         }
         public void Execute()
         {
-            if (Robot != null)
-            {
-                Robot.Battery = Robot.Battery + 9;
-                Robot.LastState = RobotEnums.States.PanelsExtended;
-            }
+        }
+
+        public void UpdateBattery()
+        {
+            Robot.Battery = Robot.Battery + 9;
+            Robot.LastState = RobotEnums.States.PanelsExtended; 
         }
     }
 }
