@@ -25,7 +25,7 @@ namespace linde_test.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool Production {
             get {
                 return ((bool)(this["Production"]));
@@ -34,7 +34,7 @@ namespace linde_test.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\cesco\\Desktop\\Linde NET Test\\test_run_1.json")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\cesco\\Desktop\\Linde NET Test\\test_run_2.json")]
         public string InputPath {
             get {
                 return ((string)(this["InputPath"]));
@@ -46,7 +46,7 @@ namespace linde_test.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\cesco\\Desktop\\Linde NET Test\\test_sol_1_paco.json")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\cesco\\Desktop\\Linde NET Test\\test_sol_2_paco.json")]
         public string OutputPath {
             get {
                 return ((string)(this["OutputPath"]));

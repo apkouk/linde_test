@@ -3,13 +3,13 @@
   <Profiles />
   <Settings>
     <Setting Name="Production" Type="System.Boolean" Scope="Application">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="InputPath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\Users\cesco\Desktop\Linde NET Test\test_run_1.json</Value>
+      <Value Profile="(Default)">C:\Users\cesco\Desktop\Linde NET Test\test_run_2.json</Value>
     </Setting>
     <Setting Name="OutputPath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\Users\cesco\Desktop\Linde NET Test\test_sol_1_paco.json</Value>
+      <Value Profile="(Default)">C:\Users\cesco\Desktop\Linde NET Test\test_sol_2_paco.json</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -1,4 +1,5 @@
-﻿using linde_test.Classes.Position.Location;
+﻿using System;
+using linde_test.Classes.Position.Location;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -43,6 +44,17 @@ namespace linde_test.Classes.Escenario
 
         private bool IsLocationOnMapBoundaries(Position.Position position)
         {
+            if (position.Location.X < 0)
+            {
+                position.Location.X = 0;
+                return false;
+            }
+            if (position.Location.Y < 0)
+            {
+                position.Location.Y = 0;
+                return false;
+            }
+
             return position.Location.X <= _terrain[0].Length - 1 && position.Location.Y <= _terrain.Length - 1;
         }
 
@@ -53,9 +65,7 @@ namespace linde_test.Classes.Escenario
 
             if (!IsLocationOnMapBoundaries(robot.Position) || IsNewLocationObs(robot.Position))
             {
-                robot.Position = NewPosition(robot.VisitedCells.Count > 0 ? robot.VisitedCells[robot.VisitedCells.Count - 1] : null);
-                robot.ExecuteCommand("R");
-                robot.ExecuteCommand("F");
+                robot.Position = FindBackoff(robot);
                 return;
             }
 
@@ -67,18 +77,34 @@ namespace linde_test.Classes.Escenario
             }
         }
 
+        private Position.Position FindBackoff(Robot robot)
+        {
+            Position.Position lastPosition = NewPosition(robot.Position);
+            Robot explorer = new RobotExplorer(robot.Escenario);
+            explorer.Battery = robot.Battery;
+            explorer.LastState = robot.LastState;
+            explorer.VisitedCells = robot.VisitedCells;
+
+            while (lastPosition != explorer.Position && !IsLocationOnMapBoundaries(explorer.Position) || IsNewLocationObs(explorer.Position))
+            {
+                explorer.ExecuteCommands();
+            }
+
+            robot.Battery = explorer.Battery;
+            robot.LastState = explorer.LastState;
+            robot.VisitedCells = explorer.VisitedCells;
+            return explorer.Position;
+        }
+
         private bool IsPositionOnList(Position.Position newPosition, List<Position.Position> visitedCells)
         {
             foreach (Position.Position visitedCell in visitedCells)
             {
-                if (visitedCell.Facing.Equals(newPosition.Facing)
-                    && visitedCell.Location.X.Equals(newPosition.Location.X)
-                    && visitedCell.Location.Y.Equals(newPosition.Location.Y))
+                if (visitedCell.Location.X.Equals(newPosition.Location.X) && visitedCell.Location.Y.Equals(newPosition.Location.Y))
                 {
                     return true;
                 }
             }
-
             return false;
         }
 
@@ -91,6 +117,5 @@ namespace linde_test.Classes.Escenario
             };
             return new Position.Position(location, position.Facing);
         }
-
     }
 }

@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Actions\ExtendSolarPanels.cs" />
+    <Compile Include="Classes\Escenario\RobotExplorer.cs" />
     <Compile Include="Interfaces\IAction.cs" />
     <Compile Include="Interfaces\IMovement.cs" />
     <Compile Include="Classes\Movements\MoveBackwards.cs" />

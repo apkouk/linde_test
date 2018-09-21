@@ -17,29 +17,29 @@ namespace linde_ut
             Assert.IsTrue(File.Exists(_robot.Escenario.OutputPath));
         }
 
-        [TestMethod]
-        public void ShouldTurnOverFacing()
-        {
-            LoadRobot();
-            linde_test.Classes.Position.Location.Location newLocArray = new linde_test.Classes.Position.Location.Location
-            {
-                X = 1,
-                Y = 2
-            };
-            Position newPos = new Position(newLocArray, linde_test.RobotEnums.Facing.South);
-            _robot.VisitedCells.Add(newPos);
+        //    [TestMethod]
+        //public void ShouldTurnOverFacing()
+        //{
+        //    LoadRobot();
+        //    linde_test.Classes.Position.Location.Location newLocArray = new linde_test.Classes.Position.Location.Location
+        //    {
+        //        X = 1,
+        //        Y = 2
+        //    };
+        //    Position newPos = new Position(newLocArray, linde_test.RobotEnums.Facing.South);
+        //    _robot.VisitedCells.Add(newPos);
 
-            linde_test.Classes.Position.Location.Location newLocObj = new linde_test.Classes.Position.Location.Location
-            {
-                X = 1,
-                Y = 2
-            };
-            Position newPosObj = new Position(newLocObj, linde_test.RobotEnums.Facing.South);
-            _robot.Position = newPosObj;
+        //    linde_test.Classes.Position.Location.Location newLocObj = new linde_test.Classes.Position.Location.Location
+        //    {
+        //        X = 1,
+        //        Y = 2
+        //    };
+        //    Position newPosObj = new Position(newLocObj, linde_test.RobotEnums.Facing.South);
+        //    _robot.Position = newPosObj;
 
-            _robot.ExecuteCommand("F");
-            Assert.IsTrue(_robot.Position.Facing == linde_test.RobotEnums.Facing.West);
-        }
+        //    _robot.ExecuteCommand("F");
+        //    Assert.IsTrue(_robot.Position.Facing == linde_test.RobotEnums.Facing.West);
+        //}
 
         [TestMethod]
         public void ShouldExtendSolarPanels()

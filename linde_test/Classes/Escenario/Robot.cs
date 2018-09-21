@@ -12,12 +12,12 @@ namespace linde_test.Classes.Escenario
     public class Robot
     {
         public int Battery { get; set; }
-        private char[] Commands { get; set; }
+        public char[] Commands { get; set; }
         public Map Map { get; set; }
         public Escenario Escenario { get; set; }
         public Position.Position Position { get; set; }
         public RobotEnums.States LastState { get; set; }
-        public readonly List<Position.Position> VisitedCells = new List<Position.Position>();
+        public List<Position.Position> VisitedCells = new List<Position.Position>();
         public readonly List<string> SamplesCollected = new List<string>();
 
         public Robot(Escenario escenario)
@@ -30,7 +30,7 @@ namespace linde_test.Classes.Escenario
             VisitedCells.Add(Map.NewPosition(Position));
         }
 
-        public void ExecuteCommand(string command)
+        public virtual void ExecuteCommand(string command)
         {
             switch (command)
             {
@@ -62,10 +62,9 @@ namespace linde_test.Classes.Escenario
             {
                 ExecuteCommand(Convert.ToString(command));
             }
-            WriteOutput();
         }
 
-        private void WriteOutput()
+        public void WriteOutput()
         {
             using (StreamWriter file = File.CreateText(Escenario.OutputPath))
             {
