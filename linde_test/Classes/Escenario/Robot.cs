@@ -17,7 +17,16 @@ namespace linde_test.Classes.Escenario
         public Escenario Escenario { get; set; }
         public Position.Position Position { get; set; }
         public RobotEnums.States LastState { get; set; }
+
+        private Position.Position lastPosition;
+        public Position.Position LastPosition
+        {
+            get { return VisitedCells[VisitedCells.Count - 1]; }
+            set { lastPosition = value; }
+        }
+
         public List<Position.Position> VisitedCells = new List<Position.Position>();
+        public List<string> ExecutedCommands = new List<string>();
         public readonly List<string> SamplesCollected = new List<string>();
 
         public Robot(Escenario escenario)
@@ -36,21 +45,27 @@ namespace linde_test.Classes.Escenario
             {
                 case "F":
                     new MoveForward(this).UpdateBattery();
+                    ExecutedCommands.Add("(F) MoveForward");
                     break;
                 case "B":
                     new MoveBackwards(this).UpdateBattery();
+                    ExecutedCommands.Add("(B) MoveBackwards");
                     break;
                 case "L":
                     new TurnLeft(this).UpdateBattery();
+                    ExecutedCommands.Add("(L) TurnLeft");
                     break;
                 case "R":
                     new TurnRight(this).UpdateBattery();
+                    ExecutedCommands.Add("(R) TurnRight");
                     break;
                 case "S":
                     new TakeSample(this).UpdateBattery();
+                    ExecutedCommands.Add("(S) TakeSample");
                     break;
                 case "E":
                     new ExtendSolarPanels(this).UpdateBattery();
+                    ExecutedCommands.Add("(E) ExtendSolarPanels");
                     break;
             }
             Map.MoveOnMap(this);

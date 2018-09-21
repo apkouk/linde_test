@@ -31,7 +31,7 @@ namespace linde_test.Classes.Escenario
             }
         }
 
-        private bool IsNewLocationObs(Position.Position position)
+        public bool IsNewLocationObs(Position.Position position)
         {
             return GetTerrain(position.Location).Equals("Obs");
         }
@@ -42,7 +42,7 @@ namespace linde_test.Classes.Escenario
             return yVal[location.X];
         }
 
-        private bool IsLocationOnMapBoundaries(Position.Position position)
+        public bool IsLocationOnMapBoundaries(Position.Position position)
         {
             if (position.Location.X < 0)
             {
@@ -63,37 +63,48 @@ namespace linde_test.Classes.Escenario
             if (robot.LastState == RobotEnums.States.Turned)
                 return;
 
-            if (!IsLocationOnMapBoundaries(robot.Position) || IsNewLocationObs(robot.Position))
+            if (!IsLocationOnMapBoundaries(robot.Position))
             {
-                robot.Position = FindBackoff(robot);
+                robot.Position = robot.LastPosition;
                 return;
             }
 
-            if (robot.LastState == RobotEnums.States.Moved)
+            if (IsNewLocationObs(robot.Position))
             {
-                Position.Position newPosition = NewPosition(robot.Position);
-                if (!IsPositionOnList(newPosition, robot.VisitedCells))
-                    robot.VisitedCells.Add(newPosition);
+                robot.Position = FindBackoff(robot);
             }
+
+            if (robot.LastState == RobotEnums.States.Moved)
+                AddNewVisitedCell(robot);
+        }
+
+        private void AddNewVisitedCell(Robot robot)
+        {
+            Position.Position newPosition = NewPosition(robot.Position);
+            if (!IsPositionOnList(newPosition, robot.VisitedCells))
+                robot.VisitedCells.Add(newPosition);
         }
 
         private Position.Position FindBackoff(Robot robot)
         {
-            Position.Position lastPosition = NewPosition(robot.Position);
-            Robot explorer = new RobotExplorer(robot.Escenario);
-            explorer.Battery = robot.Battery;
-            explorer.LastState = robot.LastState;
-            explorer.VisitedCells = robot.VisitedCells;
-
-            while (lastPosition != explorer.Position && !IsLocationOnMapBoundaries(explorer.Position) || IsNewLocationObs(explorer.Position))
-            {
-                explorer.ExecuteCommands();
-            }
-
-            robot.Battery = explorer.Battery;
-            robot.LastState = explorer.LastState;
-            robot.VisitedCells = explorer.VisitedCells;
+            Robot explorer = new RobotExplorer(robot, robot.Escenario);
             return explorer.Position;
+
+            //Position.Position lastPosition = NewPosition(robot.Position);
+            //Robot explorer = new RobotExplorer(robot.Escenario);
+            //explorer.Battery = robot.Battery;
+            //explorer.LastState = robot.LastState;
+            //explorer.VisitedCells = robot.VisitedCells;
+
+            //while (lastPosition != explorer.Position && !IsLocationOnMapBoundaries(explorer.Position) || IsNewLocationObs(explorer.Position))
+            //{
+            //    explorer.ExecuteCommands();
+            //}
+
+            //robot.Battery = explorer.Battery;
+            //robot.LastState = explorer.LastState;
+            //robot.VisitedCells = explorer.VisitedCells;
+            //return explorer.Position;
         }
 
         private bool IsPositionOnList(Position.Position newPosition, List<Position.Position> visitedCells)
