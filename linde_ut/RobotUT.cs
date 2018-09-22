@@ -11,7 +11,7 @@ namespace linde_ut
     {
         private Robot _robot;
 
-
+        [TestCategory("BackoffStrategies")]
         [TestMethod]
         public void Strategy_ERF()
         {
@@ -30,6 +30,7 @@ namespace linde_ut
             Assert.IsTrue(_robot.Position.Location.X == 0 && _robot.Position.Location.Y == 1 && _robot.Position.Facing == RobotEnums.Facing.West);
         }
 
+        [TestCategory("BackoffStrategies")]
         [TestMethod]
         public void Strategy_ELF()
         {
@@ -48,6 +49,7 @@ namespace linde_ut
             Assert.IsTrue(_robot.Position.Location.X == 1 && _robot.Position.Location.Y == 1 && _robot.Position.Facing == RobotEnums.Facing.East);
         }
 
+        [TestCategory("BackoffStrategies")]
         [TestMethod]
         public void Strategy_ELLF()
         {
@@ -66,6 +68,7 @@ namespace linde_ut
             Assert.IsTrue(_robot.Position.Location.X == 1 && _robot.Position.Location.Y == 0 && _robot.Position.Facing == RobotEnums.Facing.North);
         }
 
+        [TestCategory("BackoffStrategies")]
         [TestMethod]
         public void Strategy_EBRF()
         {
@@ -84,6 +87,7 @@ namespace linde_ut
             Assert.IsTrue(_robot.Position.Location.X == 0 && _robot.Position.Location.Y == 0 && _robot.Position.Facing == RobotEnums.Facing.West);
         }
 
+        [TestCategory("BackoffStrategies")]
         [TestMethod]
         public void Strategy_EBBLF()
         {
@@ -102,8 +106,9 @@ namespace linde_ut
             Assert.IsTrue(_robot.Position.Location.X == 2 && _robot.Position.Location.Y == 0 && _robot.Position.Facing == RobotEnums.Facing.East);
         }
 
+        [TestCategory("BackoffStrategies")]
         [TestMethod]
-        public void ShouldUseStrategy_EFF()
+        public void Strategy_EFF()
         {
             LoadRobot();
             SetInitialPosition(_robot);
@@ -120,6 +125,7 @@ namespace linde_ut
             Assert.IsTrue(_robot.Position.Location.X == 1 && _robot.Position.Location.Y == 1 && _robot.Position.Facing == RobotEnums.Facing.South);
         }
 
+        [TestCategory("BackoffStrategies")]
         [TestMethod]
         public void Strategy_EFLFLF()
         {
@@ -149,14 +155,16 @@ namespace linde_ut
             _robot.LastPosition.Facing = RobotEnums.Facing.South;
         }
 
-
+        [TestCategory("LindeCLI")]
         [TestMethod]
         public void ShouldWriteOutput()
         {
             LoadRobot();
+            _robot.WriteOutput();
             Assert.IsTrue(File.Exists(_robot.Escenario.OutputPath));
         }
 
+        [TestCategory("LindeCLI")]
         [TestMethod]
         public void ShouldExtendSolarPanels()
         {
@@ -165,6 +173,7 @@ namespace linde_ut
             Assert.IsTrue(_robot.Battery == 59);
         }
 
+        [TestCategory("LindeCLI")]
         [TestMethod]
         public void ShouldMoveOneForward()
         {
@@ -185,6 +194,7 @@ namespace linde_ut
             Assert.IsTrue(_robot.Position.Location.X == 0 && _robot.Position.Location.Y == 1);
         }
 
+        [TestCategory("LindeCLI")]
         [TestMethod]
         public void ShouldMoveOneBackwards()
         {
@@ -213,6 +223,7 @@ namespace linde_ut
             Assert.IsTrue(_robot.Position.Location.X == 1 && _robot.Position.Location.Y == 1);
         }
 
+        [TestCategory("LindeCLI")]
         [TestMethod]
         public void ShouldTurnLeft()
         {
@@ -229,6 +240,7 @@ namespace linde_ut
             Assert.IsTrue(_robot.Position.Facing == RobotEnums.Facing.East);
         }
 
+        [TestCategory("LindeCLI")]
         [TestMethod]
         public void ShouldTurnRight()
         {
@@ -245,6 +257,7 @@ namespace linde_ut
             Assert.IsTrue(_robot.Position.Facing == RobotEnums.Facing.East);
         }
 
+        [TestCategory("LindeCLI")]
         [TestMethod]
         public void ShouldTakeASample()
         {
