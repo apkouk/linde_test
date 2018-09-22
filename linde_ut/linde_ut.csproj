@@ -56,6 +56,10 @@
       <Project>{A7D2F33C-5EC5-47FC-B957-4D9509B24005}</Project>
       <Name>linde_test</Name>
     </ProjectReference>
+    <ProjectReference Include="..\linde_test_cli\linde_test_cli.csproj">
+      <Project>{cc0ede05-921f-419d-a56d-ac24b4313544}</Project>
+      <Name>linde_test_cli</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
