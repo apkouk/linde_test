@@ -2,7 +2,18 @@
 {
     public class Location
     {
-        public int X { get; set; }
-        public int Y { get; set; }
+        private int _x;
+        public int X
+        {
+            get => _x;
+            set => _x = value < 0 ? 0 : value;
+        }
+
+        private int _y;
+        public int Y
+        {
+            get => _y;
+            set => _y = value < 0 ? 0 : value;
+        }
     }
 }

@@ -33,7 +33,9 @@ namespace linde_test.Classes.Escenario
 
         public bool IsNewLocationObs(Position.Position position)
         {
-            return GetTerrain(position.Location).Equals("Obs");
+            if (IsLocationOnMapBoundaries(position))
+                return GetTerrain(position.Location).Equals("Obs");
+            return false;
         }
 
         public string GetTerrain(Location location)
