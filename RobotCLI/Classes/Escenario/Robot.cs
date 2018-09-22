@@ -57,12 +57,32 @@ namespace linde_test_cli.Classes.Escenario
             }
         }
 
+        public void MoveOnMap()
+        {
+            if (LastState == RobotEnums.States.Turned)
+                return;
+
+            if (!Map.IsLocationOnMapBoundaries(Position))
+            {
+                Position = LastPosition;
+                return;
+            }
+
+            if (Map.IsNewLocationObs(Position))
+            {
+                Position = Map.FindBackoff(this);
+            }
+
+            if (LastState == RobotEnums.States.Moved)
+                Map.AddNewVisitedCell(this);
+        }
+
         public void ExecuteCommands()
         {
             foreach (char command in Commands)
             {
                 ExecuteCommand(Convert.ToString(command));
-                Map.MoveOnMap(this);
+                MoveOnMap();
             }
            
         }

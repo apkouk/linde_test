@@ -4,8 +4,11 @@ namespace linde_test_cli.Classes.Escenario
 {
     public sealed class RobotExplorer : Robot
     {
+        public Robot Robot;
+        public List<char[]> Strategies { get; set; }
         public RobotExplorer(Robot robot, Escenario escenario) : base(escenario)
         {
+            Robot = robot;
             List<char[]> strategies = new List<char[]>
             {
                 new[] {'E', 'R', 'F'},
@@ -16,27 +19,31 @@ namespace linde_test_cli.Classes.Escenario
                 new[] {'E', 'F', 'F'},
                 new[] {'E', 'F', 'L', 'F', 'L', 'F'}
             };
+            Strategies = strategies;
+        }
 
-            Position.Position initialPosition = Map.NewPosition(robot.LastPosition);
-            VisitedCells.Add(Map.NewPosition(robot.LastPosition));
-            Position = robot.LastPosition;
-            Battery = robot.Battery;
+        public void ExecuteStrategies()
+        {
+            Position.Position initialPosition = Map.NewPosition(Robot.LastPosition);
+            VisitedCells.Add(Map.NewPosition(Robot.LastPosition));
+            Position = Robot.LastPosition;
+            Battery = Robot.Battery;
 
-            foreach (char[] strategy in strategies)
+            foreach (char[] strategy in Strategies)
             {
                 Position = Map.NewPosition(initialPosition);
                 foreach (char command in strategy)
                 {
                     ExecuteCommand(command.ToString());
-                    if (robot.Map.IsNewLocationObs(Position))
+                    if (Robot.Map.IsNewLocationObs(Position))
                         ExecuteCommand("B");
                 }
 
-                if (robot.Map.IsLocationOnMapBoundaries(Position) && !robot.Map.IsNewLocationObs(Position) && Position != initialPosition)
+                if (Robot.Map.IsLocationOnMapBoundaries(Position) && !Robot.Map.IsNewLocationObs(Position) && Position != initialPosition)
                 {
-                    robot.Battery = Battery;
-                    robot.Position = Position;
-                    Map.MoveOnMap(robot);
+                    Robot.Battery = Battery;
+                    Robot.Position = Position;
+                    Robot.MoveOnMap();
                     break;
                 }
             }

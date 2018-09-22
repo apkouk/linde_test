@@ -1,4 +1,5 @@
-﻿using linde_test_cli.Classes;
+﻿using System.Collections.Generic;
+using linde_test_cli.Classes;
 using linde_test_cli.Classes.Escenario;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
@@ -10,6 +11,145 @@ namespace linde_ut
     {
         private Robot _robot;
 
+
+        [TestMethod]
+        public void Strategy_ERF()
+        {
+            LoadRobot();
+            SetInitialPosition(_robot);
+            List<char[]> strategies = new List<char[]>
+            {
+                new[] {'E', 'R', 'F'}
+            };
+
+            RobotExplorer explorer = new RobotExplorer(_robot, _robot.Escenario)
+            {
+                Strategies = strategies
+            };
+            explorer.ExecuteStrategies();
+            Assert.IsTrue(_robot.Position.Location.X == 0 && _robot.Position.Location.Y == 1 && _robot.Position.Facing == RobotEnums.Facing.West);
+        }
+
+        [TestMethod]
+        public void Strategy_ELF()
+        {
+            LoadRobot();
+            SetInitialPosition(_robot);
+            List<char[]> strategies = new List<char[]>
+            {
+                new[] {'E', 'L', 'F'}
+            };
+
+            RobotExplorer explorer = new RobotExplorer(_robot, _robot.Escenario)
+            {
+                Strategies = strategies
+            };
+            explorer.ExecuteStrategies();
+            Assert.IsTrue(_robot.Position.Location.X == 1 && _robot.Position.Location.Y == 1 && _robot.Position.Facing == RobotEnums.Facing.East);
+        }
+
+        [TestMethod]
+        public void Strategy_ELLF()
+        {
+            LoadRobot();
+            SetInitialPosition(_robot);
+            List<char[]> strategies = new List<char[]>
+            {
+                new[] {'E', 'L', 'L', 'F'}
+            };
+
+            RobotExplorer explorer = new RobotExplorer(_robot, _robot.Escenario)
+            {
+                Strategies = strategies
+            };
+            explorer.ExecuteStrategies();
+            Assert.IsTrue(_robot.Position.Location.X == 1 && _robot.Position.Location.Y == 0 && _robot.Position.Facing == RobotEnums.Facing.North);
+        }
+
+        [TestMethod]
+        public void Strategy_EBRF()
+        {
+            LoadRobot();
+            SetInitialPosition(_robot);
+            List<char[]> strategies = new List<char[]>
+            {
+                new[] {'E', 'B', 'R', 'F'}
+            };
+
+            RobotExplorer explorer = new RobotExplorer(_robot, _robot.Escenario)
+            {
+                Strategies = strategies
+            };
+            explorer.ExecuteStrategies();
+            Assert.IsTrue(_robot.Position.Location.X == 0 && _robot.Position.Location.Y == 0 && _robot.Position.Facing == RobotEnums.Facing.West);
+        }
+
+        [TestMethod]
+        public void Strategy_EBBLF()
+        {
+            LoadRobot();
+            SetInitialPosition(_robot);
+            List<char[]> strategies = new List<char[]>
+            {
+               new[] {'E', 'B', 'B', 'L', 'F'}
+            };
+
+            RobotExplorer explorer = new RobotExplorer(_robot, _robot.Escenario)
+            {
+                Strategies = strategies
+            };
+            explorer.ExecuteStrategies();
+            Assert.IsTrue(_robot.Position.Location.X == 2 && _robot.Position.Location.Y == 0 && _robot.Position.Facing == RobotEnums.Facing.East);
+        }
+
+        [TestMethod]
+        public void ShouldUseStrategy_EFF()
+        {
+            LoadRobot();
+            SetInitialPosition(_robot);
+            List<char[]> strategies = new List<char[]>
+            {
+                new[] {'E', 'F', 'F'}
+            };
+
+            RobotExplorer explorer = new RobotExplorer(_robot, _robot.Escenario)
+            {
+                Strategies = strategies
+            };
+            explorer.ExecuteStrategies();
+            Assert.IsTrue(_robot.Position.Location.X == 1 && _robot.Position.Location.Y == 1 && _robot.Position.Facing == RobotEnums.Facing.South);
+        }
+
+        [TestMethod]
+        public void Strategy_EFLFLF()
+        {
+            LoadRobot();
+            SetInitialPosition(_robot);
+            List<char[]> strategies = new List<char[]>
+            {
+                new[] {'E', 'F', 'L', 'F', 'L', 'F'}
+            };
+
+            RobotExplorer explorer = new RobotExplorer(_robot, _robot.Escenario)
+            {
+                Strategies = strategies
+            };
+            explorer.ExecuteStrategies();
+            Assert.IsTrue(_robot.Position.Location.X == 1 && _robot.Position.Location.Y == 0 && _robot.Position.Facing == RobotEnums.Facing.North);
+        }
+
+        private void SetInitialPosition(Robot robot)
+        {
+            _robot.Position.Location.X = 1;
+            _robot.Position.Location.Y = 1;
+            _robot.Position.Facing = RobotEnums.Facing.South;
+
+            _robot.LastPosition.Location.X = 1;
+            _robot.LastPosition.Location.Y = 1;
+            _robot.LastPosition.Facing = RobotEnums.Facing.South;
+        }
+
+
         [TestMethod]
         public void ShouldWriteOutput()
         {
@@ -17,7 +157,7 @@ namespace linde_ut
             Assert.IsTrue(File.Exists(_robot.Escenario.OutputPath));
         }
 
-       [TestMethod]
+        [TestMethod]
         public void ShouldExtendSolarPanels()
         {
             LoadRobot();
@@ -122,80 +262,3 @@ namespace linde_ut
         }
     }
 }
-
-//[TestMethod]
-//public void ShouldUseStrategy_ERF()
-//{
-//    LoadRobot();
-//    _robot.Commands = new[] { 'E', 'R', 'F' };
-//    SetInitialPosition(_robot);
-//    _robot.ExecuteCommands();
-//    Assert.IsTrue(_robot.Position.Location.X == 0 && _robot.Position.Location.Y == 1 && _robot.Position.Facing == RobotEnums.Facing.West);
-//}
-
-//[TestMethod]
-//public void ShouldUseStrategy_ELF()
-//{
-//    LoadRobot();
-//    _robot.Commands = new[] { 'E', 'L', 'F' };
-//    SetInitialPosition(_robot);
-//    _robot.ExecuteCommands();
-//    Assert.IsTrue(_robot.Position.Location.X == 2 && _robot.Position.Location.Y == 1 && _robot.Position.Facing == RobotEnums.Facing.East);
-//}
-
-//[TestMethod]
-//public void ShouldUseStrategy_ELLF()
-//{
-//    LoadRobot();
-//    _robot.Commands = new[] { 'E', 'L', 'L', 'F' };
-//    SetInitialPosition(_robot);
-//    _robot.ExecuteCommands();
-//    Assert.IsTrue(_robot.Position.Location.X == 1 && _robot.Position.Location.Y == 0 && _robot.Position.Facing == RobotEnums.Facing.North);
-//}
-
-//[TestMethod]
-//public void ShouldUseStrategy_EBRF()
-//{
-//    LoadRobot();
-//    _robot.Commands = new[] { 'E', 'B', 'R', 'F' };
-//    SetInitialPosition(_robot);
-//    _robot.ExecuteCommands();
-//    Assert.IsTrue(_robot.Position.Location.X == 1 && _robot.Position.Location.Y == 0 && _robot.Position.Facing == RobotEnums.Facing.West);
-//}
-
-//[TestMethod]
-//public void ShouldUseStrategy_EBBLF()
-//{
-//    LoadRobot();
-//    _robot.Commands = new[] { 'E', 'B', 'B', 'L', 'F' };
-//    SetInitialPosition(_robot);
-//    _robot.ExecuteCommands();
-//    Assert.IsTrue(_robot.Position.Location.X == 2 && _robot.Position.Location.Y == 0 && _robot.Position.Facing == RobotEnums.Facing.East);
-//}
-
-//[TestMethod]
-//public void ShouldUseStrategy_EFF()
-//{
-//    LoadRobot();
-//    _robot.Commands = new[] { 'E', 'F', 'F' };
-//    SetInitialPosition(_robot);
-//    _robot.ExecuteCommands();
-//    Assert.IsTrue(_robot.Position.Location.X == 1 && _robot.Position.Location.Y == 1 && _robot.Position.Facing == RobotEnums.Facing.South); 
-//}
-
-//[TestMethod]
-//public void ShouldUseStrategy_EFLFLF()
-//{
-//    LoadRobot();
-//    _robot.Commands = new[] { 'E', 'F', 'L', 'F', 'L', 'F' };
-//    SetInitialPosition(_robot);
-//    _robot.ExecuteCommands();
-//    Assert.IsTrue(_robot.Position.Location.X == 1 && _robot.Position.Location.Y == 0 && _robot.Position.Facing == RobotEnums.Facing.North);
-//}
-
-//private void SetInitialPosition(Robot robot)
-//{
-//    _robot.Position.Location.X = 1;
-//    _robot.Position.Location.Y = 1;
-//    _robot.Position.Facing = RobotEnums.Facing.South;
-//}
