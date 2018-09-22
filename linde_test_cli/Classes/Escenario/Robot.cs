@@ -70,7 +70,7 @@ namespace linde_test_cli.Classes.Escenario
 
             if (Map.IsNewLocationObs(Position))
             {
-                Battery += RollBackBattery();
+                Battery += RollBack();
                 Position = Map.FindBackoff(this);
             }
 
@@ -79,7 +79,7 @@ namespace linde_test_cli.Classes.Escenario
 
         }
 
-        private int RollBackBattery()
+        private int RollBack()
         {
             int value = 0;
             switch (LastState)
