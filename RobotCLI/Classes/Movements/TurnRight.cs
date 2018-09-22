@@ -1,12 +1,12 @@
-﻿using linde_test.Interfaces;
-using linde_test.Classes.Escenario;
+﻿using linde_test_cli.Classes.Escenario;
+using linde_test_cli.Interfaces;
 
-namespace linde_test.Classes.Movements
+namespace linde_test_cli.Classes.Movements
 {
-    public class TurnLeft : IMovement
+    public class TurnRight : IMovement
     {
         private Robot Robot;
-        public TurnLeft(Robot robot)
+        public TurnRight(Robot robot)
         {
             Robot = robot;
             Move();
@@ -19,16 +19,16 @@ namespace linde_test.Classes.Movements
                 switch (Robot.Position.Facing)
                 {
                     case RobotEnums.Facing.East:
-                        Robot.Position.Facing = RobotEnums.Facing.North;
-                        break;
-                    case RobotEnums.Facing.South:
-                        Robot.Position.Facing = RobotEnums.Facing.East;
-                        break;
-                    case RobotEnums.Facing.West:
                         Robot.Position.Facing = RobotEnums.Facing.South;
                         break;
-                    case RobotEnums.Facing.North:
+                    case RobotEnums.Facing.South:
                         Robot.Position.Facing = RobotEnums.Facing.West;
+                        break;
+                    case RobotEnums.Facing.West:
+                        Robot.Position.Facing = RobotEnums.Facing.North;
+                        break;
+                    case RobotEnums.Facing.North:
+                        Robot.Position.Facing = RobotEnums.Facing.East;
                         break;
                 }
                 Robot.LastState = RobotEnums.States.Turned;
@@ -37,7 +37,7 @@ namespace linde_test.Classes.Movements
 
         public void UpdateBattery()
         {
-            Robot.Battery = Robot.Battery - 2;           
+            Robot.Battery = Robot.Battery - 2;
         }
     }
 }

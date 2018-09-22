@@ -1,7 +1,7 @@
-﻿using linde_test.Interfaces;
-using linde_test.Classes.Escenario;
+﻿using linde_test_cli.Classes.Escenario;
+using linde_test_cli.Interfaces;
 
-namespace linde_test.Classes.Actions
+namespace linde_test_cli.Classes.Actions
 {
     public class TakeSample : IAction
     {

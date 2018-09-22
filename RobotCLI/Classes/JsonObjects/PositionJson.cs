@@ -1,7 +1,7 @@
 ﻿using System;
-using linde_test.Classes.Position.Location;
+using linde_test_cli.Classes.Position.Location;
 
-namespace linde_test.Classes.JsonObjects
+namespace linde_test_cli.Classes.JsonObjects
 {
     public class PositionJson
     {

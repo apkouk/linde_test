@@ -1,17 +1,18 @@
-﻿using linde_test.Classes.Actions;
-using linde_test.Classes.JsonObjects;
-using linde_test.Classes.Movements;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using linde_test_cli.Classes.Actions;
+using linde_test_cli.Classes.JsonObjects;
+using linde_test_cli.Classes.Movements;
+using linde_test_cli.Interfaces;
+using Newtonsoft.Json;
 
-namespace linde_test.Classes.Escenario
+namespace linde_test_cli.Classes.Escenario
 {
-    public class Robot
+    public class Robot : IRobot
     {
         public int Battery { get; set; }
-        private char[] Commands { get; set; }
+        public char[] Commands { get; set; }
         public Map Map { get; set; }
         public Escenario Escenario { get; set; }
         public Position.Position Position { get; set; }

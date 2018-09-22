@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace linde_test.Classes.Escenario
+namespace linde_test_cli.Classes.Escenario
 {
     public sealed class RobotExplorer : Robot
     {

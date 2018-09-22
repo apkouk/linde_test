@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace linde_test.Classes.JsonObjects
+namespace linde_test_cli.Classes.JsonObjects
 {
     public class OutputFileJson
     {

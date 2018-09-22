@@ -17,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Files", "Files", "{B5FA5AFF
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "linde_ut", "linde_ut\linde_ut.csproj", "{4F58DC67-CE61-4FF2-A68B-A5DB5EC47F2A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "linde_test_cli", "RobotCLI\linde_test_cli.csproj", "{CC0EDE05-921F-419D-A56D-AC24B4313544}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{4F58DC67-CE61-4FF2-A68B-A5DB5EC47F2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F58DC67-CE61-4FF2-A68B-A5DB5EC47F2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F58DC67-CE61-4FF2-A68B-A5DB5EC47F2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC0EDE05-921F-419D-A56D-AC24B4313544}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC0EDE05-921F-419D-A56D-AC24B4313544}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC0EDE05-921F-419D-A56D-AC24B4313544}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC0EDE05-921F-419D-A56D-AC24B4313544}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

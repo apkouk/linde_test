@@ -1,9 +1,9 @@
 ﻿using System.Collections;
-using Newtonsoft.Json;
 using System.IO;
-using linde_test.Classes.JsonObjects;
+using linde_test_cli.Classes.JsonObjects;
+using Newtonsoft.Json;
 
-namespace linde_test.Classes.Escenario
+namespace linde_test_cli.Classes.Escenario
 {
     public class Escenario
     {

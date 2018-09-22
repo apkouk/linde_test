@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 
-namespace linde_test.Classes.JsonObjects
+namespace linde_test_cli.Classes.JsonObjects
 {
     public class EscenarioJson
     {

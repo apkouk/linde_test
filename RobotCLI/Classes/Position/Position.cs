@@ -1,4 +1,4 @@
-﻿namespace linde_test.Classes.Position
+﻿namespace linde_test_cli.Classes.Position
 {
     public class Position
     {

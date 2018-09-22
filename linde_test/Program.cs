@@ -1,5 +1,6 @@
 ﻿using System;
-using linde_test.Classes.Escenario;
+using linde_test_cli.Classes.Escenario;
+using linde_test_cli.Interfaces;
 
 namespace linde_test
 {
@@ -8,7 +9,7 @@ namespace linde_test
         static void Main(string[] args)
         {
             Escenario escenario;
-            Robot robot;
+            IRobot robot;
 
             if (Properties.Settings.Default.Production)
             {

@@ -1,7 +1,7 @@
-﻿using linde_test.Interfaces;
-using linde_test.Classes.Escenario;
+﻿using linde_test_cli.Classes.Escenario;
+using linde_test_cli.Interfaces;
 
-namespace linde_test.Classes.Movements
+namespace linde_test_cli.Classes.Movements
 {
     public class MoveBackwards : IMovement
     {

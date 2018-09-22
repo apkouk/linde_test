@@ -1,5 +1,5 @@
-﻿using linde_test.Classes;
-using linde_test.Classes.Escenario;
+﻿using linde_test_cli.Classes;
+using linde_test_cli.Classes.Escenario;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 
@@ -17,31 +17,7 @@ namespace linde_ut
             Assert.IsTrue(File.Exists(_robot.Escenario.OutputPath));
         }
 
-        //    [TestMethod]
-        //public void ShouldTurnOverFacing()
-        //{
-        //    LoadRobot();
-        //    linde_test.Classes.Position.Location.Location newLocArray = new linde_test.Classes.Position.Location.Location
-        //    {
-        //        X = 1,
-        //        Y = 2
-        //    };
-        //    Position newPos = new Position(newLocArray, linde_test.RobotEnums.Facing.South);
-        //    _robot.VisitedCells.Add(newPos);
-
-        //    linde_test.Classes.Position.Location.Location newLocObj = new linde_test.Classes.Position.Location.Location
-        //    {
-        //        X = 1,
-        //        Y = 2
-        //    };
-        //    Position newPosObj = new Position(newLocObj, linde_test.RobotEnums.Facing.South);
-        //    _robot.Position = newPosObj;
-
-        //    _robot.ExecuteCommand("F");
-        //    Assert.IsTrue(_robot.Position.Facing == linde_test.RobotEnums.Facing.West);
-        //}
-
-        [TestMethod]
+       [TestMethod]
         public void ShouldExtendSolarPanels()
         {
             LoadRobot();
@@ -142,7 +118,84 @@ namespace linde_ut
 
         private void LoadRobot()
         {
-            _robot = new Robot(new Escenario(@"C:\\Users\\cesco\\Desktop\\Linde NET Test\\test_run_1.json", @"C:\\Users\\cesco\\Desktop\\Linde NET Test\\test_sol_1_paco.json"));
+            _robot = new Robot(new Escenario(@"C:\\Users\\cesco\\Desktop\\Linde NET Test\\test_run_2.json", @"C:\\Users\\cesco\\Desktop\\Linde NET Test\\test_sol_2_paco.json"));
         }
     }
 }
+
+//[TestMethod]
+//public void ShouldUseStrategy_ERF()
+//{
+//    LoadRobot();
+//    _robot.Commands = new[] { 'E', 'R', 'F' };
+//    SetInitialPosition(_robot);
+//    _robot.ExecuteCommands();
+//    Assert.IsTrue(_robot.Position.Location.X == 0 && _robot.Position.Location.Y == 1 && _robot.Position.Facing == RobotEnums.Facing.West);
+//}
+
+//[TestMethod]
+//public void ShouldUseStrategy_ELF()
+//{
+//    LoadRobot();
+//    _robot.Commands = new[] { 'E', 'L', 'F' };
+//    SetInitialPosition(_robot);
+//    _robot.ExecuteCommands();
+//    Assert.IsTrue(_robot.Position.Location.X == 2 && _robot.Position.Location.Y == 1 && _robot.Position.Facing == RobotEnums.Facing.East);
+//}
+
+//[TestMethod]
+//public void ShouldUseStrategy_ELLF()
+//{
+//    LoadRobot();
+//    _robot.Commands = new[] { 'E', 'L', 'L', 'F' };
+//    SetInitialPosition(_robot);
+//    _robot.ExecuteCommands();
+//    Assert.IsTrue(_robot.Position.Location.X == 1 && _robot.Position.Location.Y == 0 && _robot.Position.Facing == RobotEnums.Facing.North);
+//}
+
+//[TestMethod]
+//public void ShouldUseStrategy_EBRF()
+//{
+//    LoadRobot();
+//    _robot.Commands = new[] { 'E', 'B', 'R', 'F' };
+//    SetInitialPosition(_robot);
+//    _robot.ExecuteCommands();
+//    Assert.IsTrue(_robot.Position.Location.X == 1 && _robot.Position.Location.Y == 0 && _robot.Position.Facing == RobotEnums.Facing.West);
+//}
+
+//[TestMethod]
+//public void ShouldUseStrategy_EBBLF()
+//{
+//    LoadRobot();
+//    _robot.Commands = new[] { 'E', 'B', 'B', 'L', 'F' };
+//    SetInitialPosition(_robot);
+//    _robot.ExecuteCommands();
+//    Assert.IsTrue(_robot.Position.Location.X == 2 && _robot.Position.Location.Y == 0 && _robot.Position.Facing == RobotEnums.Facing.East);
+//}
+
+//[TestMethod]
+//public void ShouldUseStrategy_EFF()
+//{
+//    LoadRobot();
+//    _robot.Commands = new[] { 'E', 'F', 'F' };
+//    SetInitialPosition(_robot);
+//    _robot.ExecuteCommands();
+//    Assert.IsTrue(_robot.Position.Location.X == 1 && _robot.Position.Location.Y == 1 && _robot.Position.Facing == RobotEnums.Facing.South); 
+//}
+
+//[TestMethod]
+//public void ShouldUseStrategy_EFLFLF()
+//{
+//    LoadRobot();
+//    _robot.Commands = new[] { 'E', 'F', 'L', 'F', 'L', 'F' };
+//    SetInitialPosition(_robot);
+//    _robot.ExecuteCommands();
+//    Assert.IsTrue(_robot.Position.Location.X == 1 && _robot.Position.Location.Y == 0 && _robot.Position.Facing == RobotEnums.Facing.North);
+//}
+
+//private void SetInitialPosition(Robot robot)
+//{
+//    _robot.Position.Location.X = 1;
+//    _robot.Position.Location.Y = 1;
+//    _robot.Position.Facing = RobotEnums.Facing.South;
+//}

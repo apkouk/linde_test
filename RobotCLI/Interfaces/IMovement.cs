@@ -1,6 +1,4 @@
-﻿using linde_test.Classes.Escenario;
-
-namespace linde_test.Interfaces
+﻿namespace linde_test_cli.Interfaces
 {
     public interface IMovement
     {

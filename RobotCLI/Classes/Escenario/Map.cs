@@ -1,9 +1,8 @@
-﻿using System;
-using linde_test.Classes.Position.Location;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using linde_test_cli.Classes.Position.Location;
 
-namespace linde_test.Classes.Escenario
+namespace linde_test_cli.Classes.Escenario
 {
     public class Map
     {

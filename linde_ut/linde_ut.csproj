@@ -59,6 +59,10 @@
       <Project>{A7D2F33C-5EC5-47FC-B957-4D9509B24005}</Project>
       <Name>linde_test</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RobotCLI\linde_test_cli.csproj">
+      <Project>{cc0ede05-921f-419d-a56d-ac24b4313544}</Project>
+      <Name>linde_test_cli</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
