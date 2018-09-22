@@ -54,7 +54,6 @@ namespace linde_test.Classes.Escenario
                     new ExtendSolarPanels(this).UpdateBattery();
                     break;
             }
-            Map.MoveOnMap(this);
         }
 
         public void ExecuteCommands()
@@ -62,7 +61,9 @@ namespace linde_test.Classes.Escenario
             foreach (char command in Commands)
             {
                 ExecuteCommand(Convert.ToString(command));
+                Map.MoveOnMap(this);
             }
+           
         }
 
         public void WriteOutput()

@@ -46,17 +46,6 @@ namespace linde_test.Classes.Escenario
 
         public bool IsLocationOnMapBoundaries(Position.Position position)
         {
-            if (position.Location.X < 0)
-            {
-                position.Location.X = 0;
-                return false;
-            }
-            if (position.Location.Y < 0)
-            {
-                position.Location.Y = 0;
-                return false;
-            }
-
             return position.Location.X <= _terrain[0].Length - 1 && position.Location.Y <= _terrain.Length - 1;
         }
 

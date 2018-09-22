@@ -1,5 +1,5 @@
-﻿using linde_test.Classes.Escenario;
-using linde_test.Classes.Position;
+﻿using linde_test.Classes;
+using linde_test.Classes.Escenario;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 
@@ -58,13 +58,13 @@ namespace linde_ut
 
             _robot.Position.Location.X = 2;
             _robot.Position.Location.Y = 1;
-            _robot.Position.Facing = linde_test.RobotEnums.Facing.West;
+            _robot.Position.Facing = RobotEnums.Facing.West;
             _robot.ExecuteCommand("F");
             Assert.IsTrue(_robot.Position.Location.X == 1 && _robot.Position.Location.Y == 1);
 
             _robot.Position.Location.X = 0;
             _robot.Position.Location.Y = 2;
-            _robot.Position.Facing = linde_test.RobotEnums.Facing.North;
+            _robot.Position.Facing = RobotEnums.Facing.North;
             _robot.ExecuteCommand("F");
             Assert.IsTrue(_robot.Position.Location.X == 0 && _robot.Position.Location.Y == 1);
         }
@@ -80,19 +80,19 @@ namespace linde_ut
 
             _robot.Position.Location.X = 1;
             _robot.Position.Location.Y = 2;
-            _robot.Position.Facing = linde_test.RobotEnums.Facing.South;
+            _robot.Position.Facing = RobotEnums.Facing.South;
             _robot.ExecuteCommand("B");
             Assert.IsTrue(_robot.Position.Location.X == 1 && _robot.Position.Location.Y == 1);
 
             _robot.Position.Location.X = 0;
             _robot.Position.Location.Y = 1;
-            _robot.Position.Facing = linde_test.RobotEnums.Facing.West;
+            _robot.Position.Facing = RobotEnums.Facing.West;
             _robot.ExecuteCommand("B");
             Assert.IsTrue(_robot.Position.Location.X == 1 && _robot.Position.Location.Y == 1);
 
             _robot.Position.Location.X = 1;
             _robot.Position.Location.Y = 0;
-            _robot.Position.Facing = linde_test.RobotEnums.Facing.North;
+            _robot.Position.Facing = RobotEnums.Facing.North;
             _robot.ExecuteCommand("B");
             Assert.IsTrue(_robot.Position.Location.X == 1 && _robot.Position.Location.Y == 1);
         }
@@ -104,13 +104,13 @@ namespace linde_ut
             _robot.Position.Location.X = 1;
             _robot.Position.Location.Y = 1;
             _robot.ExecuteCommand("L");
-            Assert.IsTrue(_robot.Position.Facing == linde_test.RobotEnums.Facing.North);
+            Assert.IsTrue(_robot.Position.Facing == RobotEnums.Facing.North);
             _robot.ExecuteCommand("L");
-            Assert.IsTrue(_robot.Position.Facing == linde_test.RobotEnums.Facing.West);
+            Assert.IsTrue(_robot.Position.Facing == RobotEnums.Facing.West);
             _robot.ExecuteCommand("L");
-            Assert.IsTrue(_robot.Position.Facing == linde_test.RobotEnums.Facing.South);
+            Assert.IsTrue(_robot.Position.Facing == RobotEnums.Facing.South);
             _robot.ExecuteCommand("L");
-            Assert.IsTrue(_robot.Position.Facing == linde_test.RobotEnums.Facing.East);
+            Assert.IsTrue(_robot.Position.Facing == RobotEnums.Facing.East);
         }
 
         [TestMethod]
@@ -120,13 +120,13 @@ namespace linde_ut
             _robot.Position.Location.X = 1;
             _robot.Position.Location.Y = 1;
             _robot.ExecuteCommand("R");
-            Assert.IsTrue(_robot.Position.Facing == linde_test.RobotEnums.Facing.South);
+            Assert.IsTrue(_robot.Position.Facing == RobotEnums.Facing.South);
             _robot.ExecuteCommand("R");
-            Assert.IsTrue(_robot.Position.Facing == linde_test.RobotEnums.Facing.West);
+            Assert.IsTrue(_robot.Position.Facing == RobotEnums.Facing.West);
             _robot.ExecuteCommand("R");
-            Assert.IsTrue(_robot.Position.Facing == linde_test.RobotEnums.Facing.North);
+            Assert.IsTrue(_robot.Position.Facing == RobotEnums.Facing.North);
             _robot.ExecuteCommand("R");
-            Assert.IsTrue(_robot.Position.Facing == linde_test.RobotEnums.Facing.East);
+            Assert.IsTrue(_robot.Position.Facing == RobotEnums.Facing.East);
         }
 
         [TestMethod]
@@ -136,7 +136,7 @@ namespace linde_ut
             _robot.Position.Location.X = 1;
             _robot.Position.Location.Y = 1;
             _robot.ExecuteCommand("S");
-            Assert.IsTrue((string)_robot.SamplesCollected[0] == "Si");
+            Assert.IsTrue(_robot.SamplesCollected[0] == "Si");
             Assert.IsTrue(_robot.Battery == 42);
         }
 

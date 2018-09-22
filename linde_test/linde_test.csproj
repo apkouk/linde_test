@@ -69,7 +69,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="RobotEnums.cs" />
+    <Compile Include="Classes\RobotEnums.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

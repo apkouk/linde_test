@@ -1,4 +1,4 @@
-﻿namespace linde_test
+﻿namespace linde_test.Classes
 {
     public static class RobotEnums
     {
