@@ -62,10 +62,9 @@ namespace linde_test_cli.Classes.Escenario
 
         private bool IsPositionOnList(Position.Position newPosition, List<Position.Position> visitedCells)
         {
-            return visitedCells.Select(x =>
+            return visitedCells.Exists(x =>
                            x.Location.X.Equals(newPosition.Location.X) &&
-                           x.Location.Y.Equals(newPosition.Location.Y))
-                        .ToList().Count > 1;
+                           x.Location.Y.Equals(newPosition.Location.Y));
         }
 
         public Position.Position NewPosition(Position.Position position)

@@ -62,18 +62,20 @@ namespace linde_test_cli.Classes.Escenario
             if (LastState == RobotEnums.States.Turned)
                 return;
 
-            if (Map.IsLocationOnMapBoundaries(Position))
-            {
-                if (Map.IsNewLocationObs(Position))
-                    Position = Map.FindBackoff(this);
-
-                if (LastState == RobotEnums.States.Moved)
-                    Map.AddNewVisitedCell(this);
-            }
-            else
+            if (!Map.IsLocationOnMapBoundaries(Position))
             {
                 Position = LastPosition;
+                return;
             }
+
+            if (Map.IsNewLocationObs(Position))
+            {
+                Position = Map.FindBackoff(this);
+            }
+
+            if (LastState == RobotEnums.States.Moved)
+                Map.AddNewVisitedCell(this);
+
         }
 
         public void ExecuteCommands()

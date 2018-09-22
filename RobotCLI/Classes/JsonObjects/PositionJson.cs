@@ -5,13 +5,13 @@ namespace linde_test_cli.Classes.JsonObjects
 {
     public class PositionJson
     {
-        private Location _location;
-        private string _facing;
+        public Location Location;
+        public string Facing;
 
         public PositionJson(Location location, RobotEnums.Facing facing)
         {
-            _location = location;
-            _facing = Enum.GetName(typeof(RobotEnums.Facing), facing);
+            Location = location;
+            Facing = Enum.GetName(typeof(RobotEnums.Facing), facing);
         }
     }
 }
