@@ -5,6 +5,7 @@ namespace linde_test_cli.Classes.Actions
 {
     public class ExtendSolarPanels : IAction
     {
+        public static int BatteryConsuming = 9;
         private readonly Robot _robot;
         public ExtendSolarPanels(Robot robot)
         {
@@ -13,12 +14,12 @@ namespace linde_test_cli.Classes.Actions
         }
         public void Execute()
         {
+            _robot.LastState = RobotEnums.States.PanelsExtended;
         }
 
         public void UpdateBattery()
         {
-            _robot.Battery = _robot.Battery + 9;
-            _robot.LastState = RobotEnums.States.PanelsExtended; 
+            _robot.Battery += BatteryConsuming;
         }
     }
 }

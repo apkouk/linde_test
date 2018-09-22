@@ -70,12 +70,34 @@ namespace linde_test_cli.Classes.Escenario
 
             if (Map.IsNewLocationObs(Position))
             {
+                Battery += RollBackBattery();
                 Position = Map.FindBackoff(this);
             }
 
             if (LastState == RobotEnums.States.Moved)
                 Map.AddNewVisitedCell(this);
 
+        }
+
+        private int RollBackBattery()
+        {
+            int value = 0;
+            switch (LastState)
+            {
+                case RobotEnums.States.Moved:
+                    value = MoveBackwards.BatteryConsuming;
+                    break;
+                case RobotEnums.States.Turned:
+                    value = TurnLeft.BatteryConsuming;
+                    break;
+                case RobotEnums.States.SampleAdded:
+                    value = TakeSample.BatteryConsuming;
+                    break;
+                case RobotEnums.States.PanelsExtended:
+                    value = ExtendSolarPanels.BatteryConsuming;
+                    break;
+            }
+            return value;
         }
 
         public void ExecuteCommands()

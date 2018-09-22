@@ -5,6 +5,7 @@ namespace linde_test_cli.Classes.Actions
 {
     public class TakeSample : IAction
     {
+        public static int BatteryConsuming = 8;
         private readonly Robot _robot;
         public TakeSample(Robot robot)
         {
@@ -23,7 +24,7 @@ namespace linde_test_cli.Classes.Actions
 
         public void UpdateBattery()
         {
-            _robot.Battery = _robot.Battery - 8;            
+            _robot.Battery -= BatteryConsuming;            
         }
     }
 }

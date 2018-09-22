@@ -5,6 +5,7 @@ namespace linde_test_cli.Classes.Movements
 {
     public class MoveForward : IMovement
     {
+        public static int BatteryConsuming = 3;
         private readonly Robot _robot;
         public MoveForward(Robot robot)
         {
@@ -37,7 +38,7 @@ namespace linde_test_cli.Classes.Movements
 
         public void UpdateBattery()
         {                     
-            _robot.Battery = _robot.Battery - 3;
+            _robot.Battery -= BatteryConsuming;
         }
     }
 }
