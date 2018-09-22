@@ -5,10 +5,10 @@ namespace linde_test_cli.Classes.Actions
 {
     public class ExtendSolarPanels : IAction
     {
-        private Robot Robot;
+        private readonly Robot _robot;
         public ExtendSolarPanels(Robot robot)
         {
-            Robot = robot;
+            _robot = robot;
             Execute();
         }
         public void Execute()
@@ -17,8 +17,8 @@ namespace linde_test_cli.Classes.Actions
 
         public void UpdateBattery()
         {
-            Robot.Battery = Robot.Battery + 9;
-            Robot.LastState = RobotEnums.States.PanelsExtended; 
+            _robot.Battery = _robot.Battery + 9;
+            _robot.LastState = RobotEnums.States.PanelsExtended; 
         }
     }
 }

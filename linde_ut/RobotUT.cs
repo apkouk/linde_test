@@ -16,7 +16,7 @@ namespace linde_ut
         public void Strategy_ERF()
         {
             LoadRobot();
-            SetInitialPosition(_robot);
+            SetInitialPosition();
             List<char[]> strategies = new List<char[]>
             {
                 new[] {'E', 'R', 'F'}
@@ -35,7 +35,7 @@ namespace linde_ut
         public void Strategy_ELF()
         {
             LoadRobot();
-            SetInitialPosition(_robot);
+            SetInitialPosition();
             List<char[]> strategies = new List<char[]>
             {
                 new[] {'E', 'L', 'F'}
@@ -54,7 +54,7 @@ namespace linde_ut
         public void Strategy_ELLF()
         {
             LoadRobot();
-            SetInitialPosition(_robot);
+            SetInitialPosition();
             List<char[]> strategies = new List<char[]>
             {
                 new[] {'E', 'L', 'L', 'F'}
@@ -73,7 +73,7 @@ namespace linde_ut
         public void Strategy_EBRF()
         {
             LoadRobot();
-            SetInitialPosition(_robot);
+            SetInitialPosition();
             List<char[]> strategies = new List<char[]>
             {
                 new[] {'E', 'B', 'R', 'F'}
@@ -92,7 +92,7 @@ namespace linde_ut
         public void Strategy_EBBLF()
         {
             LoadRobot();
-            SetInitialPosition(_robot);
+            SetInitialPosition();
             List<char[]> strategies = new List<char[]>
             {
                new[] {'E', 'B', 'B', 'L', 'F'}
@@ -111,7 +111,7 @@ namespace linde_ut
         public void Strategy_EFF()
         {
             LoadRobot();
-            SetInitialPosition(_robot);
+            SetInitialPosition();
             List<char[]> strategies = new List<char[]>
             {
                 new[] {'E', 'F', 'F'}
@@ -130,7 +130,7 @@ namespace linde_ut
         public void Strategy_EFLFLF()
         {
             LoadRobot();
-            SetInitialPosition(_robot);
+            SetInitialPosition();
             List<char[]> strategies = new List<char[]>
             {
                 new[] {'E', 'F', 'L', 'F', 'L', 'F'}
@@ -144,7 +144,7 @@ namespace linde_ut
             Assert.IsTrue(_robot.Position.Location.X == 1 && _robot.Position.Location.Y == 0 && _robot.Position.Facing == RobotEnums.Facing.North);
         }
 
-        private void SetInitialPosition(Robot robot)
+        private void SetInitialPosition()
         {
             _robot.Position.Location.X = 1;
             _robot.Position.Location.Y = 1;

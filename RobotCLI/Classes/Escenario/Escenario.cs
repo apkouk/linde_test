@@ -7,13 +7,11 @@ namespace linde_test_cli.Classes.Escenario
 {
     public class Escenario
     {
-        private EscenarioJson _properties;
         public string OutputPath { get; }
-
-        public ArrayList Terrain { get; set; }
-        public int Battery { get; set; }
-        public char[] Commands { get; set; }
-        public Position.Position InitialPosition { get; set; }
+        public ArrayList Terrain { get; private set; }
+        public int Battery { get; private set; }
+        public char[] Commands { get; private set; }
+        public Position.Position InitialPosition { get; private set; }
 
         public Escenario(string path, string outputPath)
         {
@@ -23,18 +21,14 @@ namespace linde_test_cli.Classes.Escenario
 
         private void LoadEscenario(string path)
         {
-            if (path.EndsWith(".json"))
+            if (!path.EndsWith(".json")) return;
+            using (StreamReader r = new StreamReader(path))
             {
-                using (StreamReader r = new StreamReader(path))
-                {
-                    string json = r.ReadToEnd();
-                    _properties = JsonConvert.DeserializeObject<EscenarioJson>(json);
-                }
-
-                Terrain = _properties.Terrain;
-                Battery = _properties.Battery;
-                Commands = _properties.Commands;
-                InitialPosition = _properties.InitialPosition;
+                string json = r.ReadToEnd();
+                Terrain = JsonConvert.DeserializeObject<EscenarioJson>(json).Terrain;
+                Battery = JsonConvert.DeserializeObject<EscenarioJson>(json).Battery;
+                Commands = JsonConvert.DeserializeObject<EscenarioJson>(json).Commands;
+                InitialPosition = JsonConvert.DeserializeObject<EscenarioJson>(json).InitialPosition; 
             }
         }
     }

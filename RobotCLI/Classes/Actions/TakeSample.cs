@@ -5,25 +5,25 @@ namespace linde_test_cli.Classes.Actions
 {
     public class TakeSample : IAction
     {
-        private Robot Robot;
+        private readonly Robot _robot;
         public TakeSample(Robot robot)
         {
-            Robot = robot;
+            _robot = robot;
             Execute();
         }
 
         public void Execute()
         {
-            if (Robot != null)
+            if (_robot != null)
             {                
-                Robot.SamplesCollected.Add(Robot.Map.GetTerrain(Robot.Position.Location));
-                Robot.LastState = RobotEnums.States.SampleAdded;
+                _robot.SamplesCollected.Add(_robot.Map.GetTerrain(_robot.Position.Location));
+                _robot.LastState = RobotEnums.States.SampleAdded;
             }
         }
 
         public void UpdateBattery()
         {
-            Robot.Battery = Robot.Battery - 8;            
+            _robot.Battery = _robot.Battery - 8;            
         }
     }
 }

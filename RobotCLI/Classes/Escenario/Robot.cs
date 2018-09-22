@@ -12,14 +12,14 @@ namespace linde_test_cli.Classes.Escenario
     public class Robot : IRobot
     {
         public int Battery { get; set; }
-        public char[] Commands { get; set; }
-        public Map Map { get; set; }
-        public Escenario Escenario { get; set; }
+        private char[] Commands { get; }
+        public Map Map { get; }
+        public Escenario Escenario { get; }
         public Position.Position Position { get; set; }
-        public RobotEnums.States LastState { get; set; }
+        public RobotEnums.States LastState { private get; set; }
 
         public Position.Position LastPosition => VisitedCells[VisitedCells.Count - 1];
-        public List<Position.Position> VisitedCells = new List<Position.Position>();
+        public readonly List<Position.Position> VisitedCells = new List<Position.Position>();
         public readonly List<string> SamplesCollected = new List<string>();
 
         public Robot(Escenario escenario)
@@ -62,19 +62,18 @@ namespace linde_test_cli.Classes.Escenario
             if (LastState == RobotEnums.States.Turned)
                 return;
 
-            if (!Map.IsLocationOnMapBoundaries(Position))
+            if (Map.IsLocationOnMapBoundaries(Position))
+            {
+                if (Map.IsNewLocationObs(Position))
+                    Position = Map.FindBackoff(this);
+
+                if (LastState == RobotEnums.States.Moved)
+                    Map.AddNewVisitedCell(this);
+            }
+            else
             {
                 Position = LastPosition;
-                return;
             }
-
-            if (Map.IsNewLocationObs(Position))
-            {
-                Position = Map.FindBackoff(this);
-            }
-
-            if (LastState == RobotEnums.States.Moved)
-                Map.AddNewVisitedCell(this);
         }
 
         public void ExecuteCommands()
