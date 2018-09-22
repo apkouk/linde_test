@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using linde_test_cli.Classes.Position.Location;
+using System.Linq;
 
 namespace linde_test_cli.Classes.Escenario
 {
@@ -16,7 +17,6 @@ namespace linde_test_cli.Classes.Escenario
         private void LoadTerrain(ArrayList propertiesTerrain)
         {
             _terrain = new string[propertiesTerrain.Count][];
-
             int count = 0;
             foreach (Newtonsoft.Json.Linq.JArray array in propertiesTerrain)
             {
@@ -64,14 +64,10 @@ namespace linde_test_cli.Classes.Escenario
 
         private bool IsPositionOnList(Position.Position newPosition, List<Position.Position> visitedCells)
         {
-            foreach (Position.Position visitedCell in visitedCells)
-            {
-                if (visitedCell.Location.X.Equals(newPosition.Location.X) && visitedCell.Location.Y.Equals(newPosition.Location.Y))
-                {
-                    return true;
-                }
-            }
-            return false;
+            return visitedCells.Select(x =>
+                           x.Location.X.Equals(newPosition.Location.X) &&
+                           x.Location.Y.Equals(newPosition.Location.Y))
+                        .ToList().Count > 1;
         }
 
         public Position.Position NewPosition(Position.Position position)
