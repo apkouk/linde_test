@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "linde_test", "linde_test\li
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "linde_ut", "linde_ut\linde_ut.csproj", "{4F58DC67-CE61-4FF2-A68B-A5DB5EC47F2A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "linde_test_cli", "RobotCLI\linde_test_cli.csproj", "{CC0EDE05-921F-419D-A56D-AC24B4313544}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "linde_test_cli", "linde_test_cli\linde_test_cli.csproj", "{CC0EDE05-921F-419D-A56D-AC24B4313544}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
